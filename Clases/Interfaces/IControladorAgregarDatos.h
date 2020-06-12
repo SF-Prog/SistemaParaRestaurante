@@ -1,5 +1,5 @@
 #ifndef ICONTROLADORAGREGARDATOS
-#define CONTROLADORAGREGARDATOS
+#define ICONTROLADORAGREGARDATOS
 
 class IControladorAgregarDatos {
 public:
