@@ -3,17 +3,18 @@
 
 #include "Empleado.h"
 
+class Mesa;
 class Mozo: public Empleado {
 private:
-    //list<Mesa*> mesas; //REVISAR
+    list<Mesa*> mesas;
 public:
     //Constructores
     Mozo();
     Mozo(string, string);
 
     //Getters & Setters
-    /*list<Mesa*> getMesas();
-    void setMesas(list<Mesa*>);*/
+    list<Mesa*> getMesas();
+    void setMesas(list<Mesa*>);
 
     //Destructores
     ~Mozo();

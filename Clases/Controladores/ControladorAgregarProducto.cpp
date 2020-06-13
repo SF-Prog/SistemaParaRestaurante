@@ -23,11 +23,9 @@ ControladorAgregarProducto::~ControladorAgregarProducto() {}
 void ControladorAgregarProducto::seleccionarMesa(int idMesa) {
 	this->setMesa(idMesa);
 }
-
 void ControladorAgregarProducto::seleccionarProducto(DtProductoCantidad pc) {
 	this->setProductoVenta(pc);
 }
-
 list<DtProductoBase*> ControladorAgregarProducto::listarProductos() {
 	ManejadorProducto* mP = ManejadorProducto::getInstancia();
 	list<DtProductoBase*> dtproductos;
@@ -35,10 +33,8 @@ list<DtProductoBase*> ControladorAgregarProducto::listarProductos() {
 		dtproductos.push_back(p->getDtProductoBase());
 	return dtproductos;
 }
-
 void ControladorAgregarProducto::cancelarAgregarProductoVenta() {
 }
-
 void ControladorAgregarProducto::confirmarAgregarProductoVenta() {
 	ManejadorMesa* mM = ManejadorMesa::getInstancia();
 	Mesa* me = mM->getMesa(this->getMesa());

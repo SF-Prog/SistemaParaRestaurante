@@ -27,7 +27,7 @@ Menu::~Menu() {}
 TipoProducto Menu::getTipoProducto() {
 	return menu;
 }
-int Menu::eliminarComun(string codigo) { //REVISAR Producto pro, string codigo
+int Menu::eliminarComun(string codigo) {
 	for (ProductoMenu* pm : this->getProductosMenu()) {
 		if (pm->getCodigoComun() == codigo) {
 			this->getProductosMenu().remove(pm);

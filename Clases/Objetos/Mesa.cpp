@@ -38,5 +38,5 @@ list<DtProducto*> Mesa::listarProductos() {
     return this->getVentaLocal()->listarProductos();
 }
 void Mesa::quitarProducto(DtProductoCantidad pc) {
-    this->getVentaLocal()->eliminarProducto(pc.getCodigo()); //REVISAR
+    this->getVentaLocal()->eliminarProducto(pc.getCodigo());
 }

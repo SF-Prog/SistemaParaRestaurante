@@ -45,12 +45,13 @@ void ControladorAltaProducto::setPrecioComun(float precioComun) {
 ControladorAltaProducto::~ControladorAltaProducto() {}
 
 //Metodos
-list<DtProductoBase*> ControladorAltaProducto::listarProductosComunes() { //REVISAR
+list<DtProductoBase*> ControladorAltaProducto::listarProductosComunes() {
 	ManejadorProducto* mP = ManejadorProducto::getInstancia();
 	list<DtProductoBase*> dtproductos;
 	for (Producto* p : mP->getProductos()) {
 		Comun* c = dynamic_cast<Comun*>(p);
-		dtproductos.push_back(c->getDtProductoBase());
+		if (c != NULL)
+			dtproductos.push_back(c->getDtProductoBase());
 	}
 	return dtproductos;
 }

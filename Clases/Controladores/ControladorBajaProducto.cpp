@@ -21,14 +21,11 @@ list<DtProductoBase*> ControladorBajaProducto::listarProductos() {
 		dtproductos.push_back(p->getDtProductoBase());
 	return dtproductos;
 }
-
 void ControladorBajaProducto::seleccionarProducto(string cod) {
 	this->setCodigo(cod);
 }
-
 void ControladorBajaProducto::cancelarBajaProducto() {
 }
-
 void ControladorBajaProducto::eliminarProducto() {
 	ManejadorProducto* mP = ManejadorProducto::getInstancia();
 	Producto* pro = mP->getProducto(this->getCodigo());
@@ -40,7 +37,7 @@ void ControladorBajaProducto::eliminarProducto() {
 	if (tipo == comun) {
 		for (Producto* p : mP->getProductos()) {
 			Menu* m = dynamic_cast<Menu*>(p);
-			if (m->eliminarComun(this->getCodigo()) == 0) { //REVISAR pro, this->getCodigo()
+			if (m != NULL && m->eliminarComun(pro->getCodigo()) == 0) {
 				for (Venta* v : ventas)
 					v->eliminarProducto(m->getCodigo());
 				mP->removerProducto(m);
