@@ -1,21 +1,12 @@
-#include "Clases/Interfaces/IControladorAgregarDatos.h"
-#include "Clases/Interfaces/IControladorAgregarProducto.h"
-#include "Clases/Interfaces/IControladorAltaProducto.h"
-#include "Clases/Interfaces/IControladorBajaProducto.h"
-#include "Clases/Interfaces/IControladorFacturacion.h"
-#include "Clases/Interfaces/IControladorIniciarVenta.h"
-#include "Clases/Interfaces/IControladorQuitarProducto.h"
-
 #include "Clases/Fabrica.h"
 
-using namespace  std;
-
 Fabrica* fabrica;
-IControladorAgregarDatos* iConAd;
+IControladorAgregarDatos* iConAgD;
 IControladorAgregarProducto* iConAgP;
 IControladorAltaProducto* iConAlP;
 IControladorBajaProducto* iConBjP;
 IControladorFacturacion* iConFac;
+IControladorFuncionesAuxiliares* iConFuA;
 IControladorIniciarVenta* iConInV;
 IControladorQuitarProducto* iConQtP;
 
@@ -39,7 +30,6 @@ void informacionProducto();
 void cargarDatosPrueba();
 
 //FUNCIONES AUXILIARES
-
 void desplegarMenu();
 
 void altaProducto() {
@@ -48,6 +38,29 @@ void altaProducto() {
 	cout << "_____________________________________________________" << endl;
 	cout << "==============A L T A   P R O D U C T O==============" << endl;
 	cout << "_____________________________________________________" << endl;
+
+	string codigo, descripcion;
+	float precio;
+	bool okRegistro = false;
+
+	try {
+		cout << endl << "CODIGO: ";
+		cin >> codigo;
+		cout << endl << "DESCRIPCION: ";
+		cin >> descripcion;
+		cout << endl << "PRECIO: ";
+		cin >> precio;
+	}
+	catch (exception& e) {
+		cout << endl << "ERROR! Tipo de dato invalido." << endl;
+	}
+	try {
+		if (iConFuA->validarProducto(codigo, precio))
+			iConFuA->altaProducto(codigo, descripcion, precio);
+	}
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
 }
 
 void iniciarVenta() {
@@ -113,6 +126,62 @@ void bajaProducto() {
 	cout << "_____________________________________________________" << endl;
 	cout << "==============B A J A   P R O D U C T O==============" << endl;
 	cout << "_____________________________________________________" << endl;
+	bool encontro = false;
+string codProd;
+string cero = "0";
+
+list<DtProductoBase*> productosActuales = iConBjP->listarProductos() ;
+
+
+
+
+
+
+if(productosActuales.empty()){
+			system("clear");
+			cout<< "          -No hay Productos en el Sistema-" << endl;
+			sleep(2);
+			system("clear");
+}else{
+			cout<< "Lista de productos actualizada: " << endl;
+			for (DtProductoBase* dtPB : productosActuales){
+									cout << *dtPB << endl;
+			}
+
+
+
+			cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
+			cin >> codProd;
+			/*Producto* p = productosActuales->getProducto(codProd);*/
+
+			for (DtProductoBase* dtPB : productosActuales){
+						if(codProd.compare(dtPB->getCodigo()) == 0){
+
+
+									encontro = true;
+									system("clear");
+									iConBjP->seleccionarProducto(codProd);
+									iConBjP->eliminarProducto();
+
+									cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
+									sleep(4);
+									system("clear");
+						}
+			}
+
+			if((encontro == false)&&(codProd.compare(cero) != 0)){
+						system("clear");
+						cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
+						sleep(2);
+						iConBjP->cancelarBajaProducto();
+						bajaProducto();
+			}
+			else if(codProd.compare(cero) == 0){
+						system("clear");
+			}
+
+
+}
 }
 
 void informacionProducto() {
@@ -125,7 +194,7 @@ void informacionProducto() {
 
 void cargarDatosPrueba() {
 	system("clear");
-	iConAd->cargarDatos();
+	iConAgD->cargarDatos();
 }
 
 //MENU
@@ -151,10 +220,11 @@ void desplegarMenu() {
 int main(){
 	fabrica = Fabrica::getInstancia();
 
-	iConAd = fabrica->getIControladorAgregarDatos();
+	iConAgD = fabrica->getIControladorAgregarDatos();
 	iConAgP = fabrica->getIControladorAgregarProducto();
 	iConAlP = fabrica->getIControladorAltaProducto();
 	iConBjP = fabrica->getIControladorBajaProducto();
+	iConFuA = fabrica->getIControladorFuncionesAuxiliares();
 	iConFac = fabrica->getIControladorFacturacion();
 	iConInV = fabrica->getIControladorIniciarVenta();
 	iConQtP = fabrica->getIControladorQuitarProducto();
@@ -165,31 +235,31 @@ int main(){
 	cin >> opcion;
 	while (opcion != 0) {
 		switch (opcion) {
-		case 1: altaProducto();
-			break;
-		case 2: iniciarVenta();
-			break;
-		case 3: agregarProductoAVenta();
-			break;
-		case 4: quitarProductoAVenta();
-			break;
-		case 5: facturacionDeUnaVenta();
-			break;
-		case 6: asignarMozosAMesas();
-			break;
-		case 7: bajaProducto();
-			break;
-		case 8: informacionProducto();
-			break;
-		case 9: cargarDatosPrueba();
-			break;
-		case 0: {
-			system("exit");
+			case 1: altaProducto();
+				break;
+			case 2: iniciarVenta();
+				break;
+			case 3: agregarProductoAVenta();
+				break;
+			case 4: quitarProductoAVenta();
+				break;
+			case 5: facturacionDeUnaVenta();
+				break;
+			case 6: asignarMozosAMesas();
+				break;
+			case 7: bajaProducto();
+				break;
+			case 8: informacionProducto();
+				break;
+			case 9: cargarDatosPrueba();
+				break;
+			case 0: {
+				system("exit");
 
-			cout << "SALIENDO..." << endl;
-		}
-		default:
-			cout << endl << "OPCION INCORRECTA" << endl;
+				cout << "SALIENDO..." << endl;
+			}
+			default:
+				cout << endl << "OPCION INCORRECTA" << endl;
 		}
 		desplegarMenu();
 

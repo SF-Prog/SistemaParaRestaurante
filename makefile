@@ -1,5 +1,5 @@
-main:	Fabrica.o ControladorAgregarDatos.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturacion.o ControladorIniciarVenta.o ControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Comun.o Empleado.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o DtFactura.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o
-	g++ main.cpp -o obligatorio Fabrica.o ControladorAgregarDatos.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturacion.o ControladorIniciarVenta.o ControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Comun.o Empleado.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o DtFactura.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o
+main:	Fabrica.o ControladorAgregarDatos.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturacion.o ControladorFuncionesAuxiliares.o ControladorIniciarVenta.o ControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Comun.o Empleado.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o DtFactura.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o
+	g++ main.cpp -std=c++11 -o obligatorio Fabrica.o ControladorAgregarDatos.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturacion.o ControladorFuncionesAuxiliares.o ControladorIniciarVenta.o ControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Comun.o Empleado.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o DtFactura.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o
 #FABRICA
 Fabrica.o: Clases/Fabrica.cpp Clases/Fabrica.h
 	g++ -c Clases/Fabrica.cpp -o Fabrica.o
@@ -14,6 +14,8 @@ ControladorBajaProducto.o: Clases/Controladores/ControladorBajaProducto.cpp Clas
 	g++ -c Clases/Controladores/ControladorBajaProducto.cpp -o ControladorBajaProducto.o
 ControladorFacturacion.o: Clases/Controladores/ControladorFacturacion.cpp Clases/Controladores/ControladorFacturacion.h
 	g++ -c Clases/Controladores/ControladorFacturacion.cpp -o ControladorFacturacion.o
+ControladorFuncionesAuxiliares.o: Clases/Controladores/ControladorFuncionesAuxiliares.cpp Clases/Controladores/ControladorFuncionesAuxiliares.h
+	g++ -c Clases/Controladores/ControladorFuncionesAuxiliares.cpp -o ControladorFuncionesAuxiliares.o
 ControladorIniciarVenta.o: Clases/Controladores/ControladorIniciarVenta.cpp Clases/Controladores/ControladorIniciarVenta.h
 	g++ -c Clases/Controladores/ControladorIniciarVenta.cpp -o ControladorIniciarVenta.o
 ControladorQuitarProducto.o: Clases/Controladores/ControladorQuitarProducto.cpp Clases/Controladores/ControladorQuitarProducto.h

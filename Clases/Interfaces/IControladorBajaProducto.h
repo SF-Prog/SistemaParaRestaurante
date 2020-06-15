@@ -3,6 +3,7 @@
 
 #include <list>
 #include "../DataTypes/DtProductoBase.h"
+#include "../Objetos/Producto.h"
 
 class IControladorBajaProducto {
 public:

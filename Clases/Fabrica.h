@@ -6,6 +6,7 @@
 #include "Interfaces/IControladorAltaProducto.h"
 #include "Interfaces/IControladorBajaProducto.h"
 #include "Interfaces/IControladorFacturacion.h"
+#include "Interfaces/IControladorFuncionesAuxiliares.h"
 #include "Interfaces/IControladorIniciarVenta.h"
 #include "Interfaces/IControladorQuitarProducto.h"
 
@@ -26,6 +27,7 @@ public:
     IControladorAltaProducto* getIControladorAltaProducto();
     IControladorBajaProducto* getIControladorBajaProducto();
     IControladorFacturacion* getIControladorFacturacion();
+    IControladorFuncionesAuxiliares* getIControladorFuncionesAuxiliares();
     IControladorIniciarVenta* getIControladorIniciarVenta();
     IControladorQuitarProducto* getIControladorQuitarProducto();
 };

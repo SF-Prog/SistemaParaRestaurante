@@ -25,3 +25,7 @@ void DtProductoBase::setDescripcion(string descripcion) {
 DtProductoBase::~DtProductoBase() {}
 
 //Metodos
+ostream& operator<<(ostream& salida, const DtProductoBase& dt){
+    salida << "CodigoProd:  " << dt.codigo <<  "-----------  Descrpcion: "  << dt.descripcion;
+    return salida;
+}
