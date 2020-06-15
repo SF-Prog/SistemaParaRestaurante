@@ -4,6 +4,7 @@
 #include "Controladores/ControladorAltaProducto.h"
 #include "Controladores/ControladorBajaProducto.h"
 #include "Controladores/ControladorFacturacion.h"
+#include "Controladores/ControladorFuncionesAuxiliares.h"
 #include "Controladores/ControladorIniciarVenta.h"
 #include "Controladores/ControladorQuitarProducto.h"
 
@@ -37,9 +38,12 @@ IControladorBajaProducto* Fabrica::getIControladorBajaProducto() {
 IControladorFacturacion* Fabrica::getIControladorFacturacion() {
     return new ControladorFacturacion();
 }
+IControladorQuitarProducto* Fabrica::getIControladorQuitarProducto() {
+    return new ControladorQuitarProducto();
+}
 IControladorIniciarVenta* Fabrica::getIControladorIniciarVenta() {
     return new ControladorIniciarVenta();
 }
-IControladorQuitarProducto* Fabrica::getIControladorQuitarProducto() {
-    return new ControladorQuitarProducto();
+IControladorFuncionesAuxiliares* Fabrica::getIControladorFuncionesAuxiliares() {
+    return new ControladorFuncionesAuxiliares();
 }

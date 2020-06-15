@@ -1,21 +1,12 @@
-#include "Clases/Interfaces/IControladorAgregarDatos.h"
-#include "Clases/Interfaces/IControladorAgregarProducto.h"
-#include "Clases/Interfaces/IControladorAltaProducto.h"
-#include "Clases/Interfaces/IControladorBajaProducto.h"
-#include "Clases/Interfaces/IControladorFacturacion.h"
-#include "Clases/Interfaces/IControladorIniciarVenta.h"
-#include "Clases/Interfaces/IControladorQuitarProducto.h"
-
 #include "Clases/Fabrica.h"
 
-using namespace  std;
-
 Fabrica* fabrica;
-IControladorAgregarDatos* iConAd;
+IControladorAgregarDatos* iConAgD;
 IControladorAgregarProducto* iConAgP;
 IControladorAltaProducto* iConAlP;
 IControladorBajaProducto* iConBjP;
 IControladorFacturacion* iConFac;
+IControladorFuncionesAuxiliares* iConFuA;
 IControladorIniciarVenta* iConInV;
 IControladorQuitarProducto* iConQtP;
 
@@ -109,7 +100,7 @@ void informacionProducto() {
 
 void cargarDatosPrueba() {
 	system("clear");
-	iConAd->cargarDatos();
+	iConAgD->cargarDatos();
 }
 
 //MENU
@@ -135,10 +126,11 @@ void desplegarMenu() {
 int main(){
 	fabrica = Fabrica::getInstancia();
 
-	iConAd = fabrica->getIControladorAgregarDatos();
+	iConAgD = fabrica->getIControladorAgregarDatos();
 	iConAgP = fabrica->getIControladorAgregarProducto();
 	iConAlP = fabrica->getIControladorAltaProducto();
 	iConBjP = fabrica->getIControladorBajaProducto();
+	iConFuA = fabrica->getIControladorFuncionesAuxiliares();
 	iConFac = fabrica->getIControladorFacturacion();
 	iConInV = fabrica->getIControladorIniciarVenta();
 	iConQtP = fabrica->getIControladorQuitarProducto();
