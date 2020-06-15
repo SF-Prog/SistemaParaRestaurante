@@ -4,10 +4,10 @@
 #include "../Manejadores/ManejadorProducto.h"
 #include "../Manejadores/ManejadorVenta.h"
 
-bool validarProducto(string codigo, float precio) {
+bool ControladorFuncionesAuxiliares::validarProducto(string codigo, float precio) {
 
 }
-void altaProducto(string codigo, string descripcion, float precio) {
+void ControladorFuncionesAuxiliares::altaProducto(string codigo, string descripcion, float precio) {
 	cout << endl << "TIPO DE PRODUCTO" << endl;
 	cout << "\t1.COMUN" << endl;
 	cout << "\t2.MENU" << endl;
@@ -20,7 +20,7 @@ void altaProducto(string codigo, string descripcion, float precio) {
 	switch (tipoProducto) {
 		case 1: {
 			/*
-			cout << endl << "¿TIENE LUCES?" << endl;
+			cout << endl << "ï¿½TIENE LUCES?" << endl;
 			cout << "\t1.SI " << endl;
 			cout << "\t2.NO" << endl;
 			cout << "OPCION: ";
@@ -28,7 +28,7 @@ void altaProducto(string codigo, string descripcion, float precio) {
 			int opTieneLuces;
 			cin >> opTieneLuces;
 			if (opTieneLuces < 1 || opTieneLuces > 2)
-				throw invalid_argument("\nERROR! opción inválida.");
+				throw invalid_argument("\nERROR! opciï¿½n invï¿½lida.");
 			bool tieneLuces = (opTieneLuces == 1) ? true : false;
 
 			Monopatin* mono = new Monopatin(vehiculo.getNroSerie(), vehiculo.getPorcentaje(), vehiculo.getPrecioBase(), tieneLuces);
@@ -46,7 +46,7 @@ void altaProducto(string codigo, string descripcion, float precio) {
 			int opTipoBici;
 			cin >> opTipoBici;
 			if (opTipoBici < 1 || opTipoBici > 2)
-				throw invalid_argument("\nERROR! opción inválida.");
+				throw invalid_argument("\nERROR! opciï¿½n invï¿½lida.");
 			switch (opTipoBici) {
 			case 1: tipo = Paseo;
 				break;

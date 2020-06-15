@@ -2,6 +2,7 @@
 #define DTPRODUCTOBASE
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ public:
     virtual ~DtProductoBase();
 
     //Metodos
+		friend ostream& operator<<(ostream&, const DtProductoBase&);
 };
 
 #endif //DTPRODUCTOBASE
