@@ -77,10 +77,26 @@ void quitarProductoAVenta() {
 
 void facturacionDeUnaVenta() {
 	system("clear");
-
 	cout << "_____________________________________________________" << endl;
 	cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
 	cout << "_____________________________________________________" << endl;
+
+	int idMesa;
+	float descuento;
+	DtFacturaLocal DTFL;
+
+	cout << "\nIngrese Nº de mesa: ";
+	cin >> idMesa;
+	cout << "\nDescuento: ";
+	cin >> descuento;
+
+	DTFL = iConFac->facturar(idMesa, descuento);
+
+	cout << "\nSe ha generadola siguiente factura:\n ";
+	cout << "\n┌──────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
+	cout << "\n|   Código de venta: "<< DTFL.getCodVenta()<< "|";
+
+
 }
 
 void asignarMozosAMesas() {

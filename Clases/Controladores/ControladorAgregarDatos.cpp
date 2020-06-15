@@ -3,6 +3,7 @@
 #include "../Manejadores/ManejadorEmpleado.h"
 #include "../Manejadores/ManejadorProducto.h"
 #include "../Manejadores/ManejadorVenta.h"
+#include "../Manejadores/ManejadorMesa.h"
 #include "ControladorAgregarDatos.h"
 
 void ControladorAgregarDatos::cargarDatos(){
@@ -34,4 +35,7 @@ void ControladorAgregarDatos::cargarDatos(){
     mP->agregarProducto(p3);
     mP->agregarProducto(p4);
     mP->agregarProducto(p5);
-}
+    //Mesas
+    ManejadorMesas* mM=ManejadorMesas::getInstancia();
+    Mesa* m= new Mesa(99);
+  }
