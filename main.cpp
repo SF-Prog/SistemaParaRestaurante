@@ -140,7 +140,7 @@ list<DtProductoBase*> productosActuales = iConBjP->listarProductos() ;
 if(productosActuales.empty()){
 			system("clear");
 			cout<< "          -No hay Productos en el Sistema-" << endl;
-			sleep(2);
+			// sleep(2);
 			system("clear");
 }else{
 			cout<< "Lista de productos actualizada: " << endl;
@@ -164,7 +164,7 @@ if(productosActuales.empty()){
 									iConBjP->eliminarProducto();
 
 									cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-									sleep(4);
+									// sleep(4);
 									system("clear");
 						}
 			}
@@ -172,7 +172,7 @@ if(productosActuales.empty()){
 			if((encontro == false)&&(codProd.compare(cero) != 0)){
 						system("clear");
 						cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-						sleep(2);
+						// sleep(2);
 						iConBjP->cancelarBajaProducto();
 						bajaProducto();
 			}
