@@ -30,7 +30,6 @@ void informacionProducto();
 void cargarDatosPrueba();
 
 //FUNCIONES AUXILIARES
-
 void desplegarMenu();
 
 void altaProducto() {
@@ -39,6 +38,29 @@ void altaProducto() {
 	cout << "_____________________________________________________" << endl;
 	cout << "==============A L T A   P R O D U C T O==============" << endl;
 	cout << "_____________________________________________________" << endl;
+
+	string codigo, descripcion;
+	float precio;
+	bool okRegistro = false;
+
+	try {
+		cout << endl << "CODIGO: ";
+		cin >> codigo;
+		cout << endl << "DESCRIPCION: ";
+		cin >> descripcion;
+		cout << endl << "PRECIO: ";
+		cin >> precio;
+	}
+	catch (exception& e) {
+		cout << endl << "ERROR! Tipo de dato invalido." << endl;
+	}
+	try {
+		if (iConFuA->validarProducto(codigo, precio))
+			iConFuA->altaProducto(codigo, descripcion, precio);
+	}
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
 }
 
 void iniciarVenta() {
@@ -141,31 +163,31 @@ int main(){
 	cin >> opcion;
 	while (opcion != 0) {
 		switch (opcion) {
-		case 1: altaProducto();
-			break;
-		case 2: iniciarVenta();
-			break;
-		case 3: agregarProductoAVenta();
-			break;
-		case 4: quitarProductoAVenta();
-			break;
-		case 5: facturacionDeUnaVenta();
-			break;
-		case 6: asignarMozosAMesas();
-			break;
-		case 7: bajaProducto();
-			break;
-		case 8: informacionProducto();
-			break;
-		case 9: cargarDatosPrueba();
-			break;
-		case 0: {
-			system("exit");
+			case 1: altaProducto();
+				break;
+			case 2: iniciarVenta();
+				break;
+			case 3: agregarProductoAVenta();
+				break;
+			case 4: quitarProductoAVenta();
+				break;
+			case 5: facturacionDeUnaVenta();
+				break;
+			case 6: asignarMozosAMesas();
+				break;
+			case 7: bajaProducto();
+				break;
+			case 8: informacionProducto();
+				break;
+			case 9: cargarDatosPrueba();
+				break;
+			case 0: {
+				system("exit");
 
-			cout << "SALIENDO..." << endl;
-		}
-		default:
-			cout << endl << "OPCION INCORRECTA" << endl;
+				cout << "SALIENDO..." << endl;
+			}
+			default:
+				cout << endl << "OPCION INCORRECTA" << endl;
 		}
 		desplegarMenu();
 
