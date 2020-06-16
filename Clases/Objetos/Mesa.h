@@ -7,6 +7,7 @@
 
 using namespace std;
 
+class VentaLocal;
 class Mesa {
 private:
     int numero;

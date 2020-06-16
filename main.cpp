@@ -104,8 +104,11 @@ void asignarMozosAMesas() {
 	cout << "======A S I G N A R   M O Z O S   A   M E S A S======" << endl;
 	cout << "_____________________________________________________" << endl;
 
-	iConAsMM->asignarMozosMesas();
-	sleep(2);
+
+
+			iConAsMM->asignarMozosMesas();
+			sleep(2);
+
 }
 
 void bajaProducto() {
@@ -133,8 +136,6 @@ void bajaProducto() {
 
 										cout << *dtPB << endl;
 				}
-
-
 
 				cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
 				cin >> codProd;

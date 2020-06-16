@@ -7,7 +7,12 @@
 #include "../Objetos/VentaLocal.h"
 
 class ControladorAsignarMesasAMozos : public IControladorAsignarMesasAMozos {
+		list<DtAsignacion*> listaAsignacion;
 public:
+		//Getters y Setters
+		list<DtAsignacion*> getListaAsignacion();
+		void setListaAsignacion(list<DtAsignacion*>);
+
 
 		//Destructores
 		~ControladorAsignarMesasAMozos();
