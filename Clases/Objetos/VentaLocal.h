@@ -5,6 +5,7 @@
 #include "Mozo.h"
 #include "Venta.h"
 
+class Mozo;
 class VentaLocal : public Venta {
 private:
     Mozo* mozo;

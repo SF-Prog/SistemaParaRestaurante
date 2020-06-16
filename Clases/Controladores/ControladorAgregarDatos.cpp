@@ -36,6 +36,23 @@ void ControladorAgregarDatos::cargarDatos(){
     mP->agregarProducto(p4);
     mP->agregarProducto(p5);
     //Mesas
-    // ManejadorMesas* mM=ManejadorMesas::getInstancia();
-    // Mesa* m= new Mesa(99);
+		ManejadorMesa* mM =ManejadorMesa::getInstancia();
+		Mesa* mesa1 = new Mesa(1);
+		Mesa* mesa2 = new Mesa(2);
+		Mesa* mesa3 = new Mesa(3);
+		Mesa* mesa4 = new Mesa(4);
+		Mesa* mesa5 = new Mesa(5);
+		Mesa* mesa6 = new Mesa(6);
+		Mesa* mesa7 = new Mesa(7);
+		Mesa* mesa8 = new Mesa(8);
+		Mesa* mesa9 = new Mesa(9);
+		mM->agregarMesa(mesa1);
+		mM->agregarMesa(mesa2);
+		mM->agregarMesa(mesa3);
+		mM->agregarMesa(mesa4);
+		mM->agregarMesa(mesa5);
+		mM->agregarMesa(mesa6);
+		mM->agregarMesa(mesa7);
+		mM->agregarMesa(mesa8);
+		mM->agregarMesa(mesa9);
   }
