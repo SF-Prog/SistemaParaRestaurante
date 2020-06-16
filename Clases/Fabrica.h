@@ -9,6 +9,7 @@
 #include "Interfaces/IControladorFuncionesAuxiliares.h"
 #include "Interfaces/IControladorIniciarVenta.h"
 #include "Interfaces/IControladorQuitarProducto.h"
+#include "Interfaces/IControladorAsignarMesasAMozos.h"
 
 class Fabrica {
 private:
@@ -30,6 +31,7 @@ public:
     IControladorFuncionesAuxiliares* getIControladorFuncionesAuxiliares();
     IControladorIniciarVenta* getIControladorIniciarVenta();
     IControladorQuitarProducto* getIControladorQuitarProducto();
+		IControladorAsignarMesasAMozos* getIControladorAsignarMesasAMozos();
 };
 
 #endif //FABRICA

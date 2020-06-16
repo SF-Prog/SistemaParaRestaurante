@@ -9,6 +9,7 @@ IControladorFacturacion* iConFac;
 IControladorFuncionesAuxiliares* iConFuA;
 IControladorIniciarVenta* iConInV;
 IControladorQuitarProducto* iConQtP;
+IControladorAsignarMesasAMozos* iConAsMM;
 
 //OPERACION1 ALTA PRODUCTO
 void altaProducto();
@@ -90,6 +91,7 @@ void quitarProductoAVenta() {
 
 void facturacionDeUnaVenta() {
 	system("clear");
+
 	cout << "_____________________________________________________" << endl;
 	cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
 	cout << "_____________________________________________________" << endl;
@@ -117,6 +119,9 @@ void asignarMozosAMesas() {
 	cout << "_____________________________________________________" << endl;
 	cout << "======A S I G N A R   M O Z O S   A   M E S A S======" << endl;
 	cout << "_____________________________________________________" << endl;
+
+	iConAsMM->asignarMozosMesas();
+	sleep(2);
 }
 
 void bajaProducto() {
@@ -126,61 +131,59 @@ void bajaProducto() {
 	cout << "==============B A J A   P R O D U C T O==============" << endl;
 	cout << "_____________________________________________________" << endl;
 	bool encontro = false;
-string codProd;
-string cero = "0";
+	string codProd;
+	string cero = "0";
 
-list<DtProductoBase*> productosActuales = iConBjP->listarProductos() ;
+	list<DtProductoBase*> productosActuales = iConBjP->listarProductos() ;
 
+	if(productosActuales.empty()){
 
+				system("clear");
+				cout<< "          -No hay Productos en el Sistema-" << endl;
+				sleep(2);
+				system("clear");
+	}else{
 
+				cout<< "Lista de productos actualizada: " << endl;
+				for (DtProductoBase* dtPB : productosActuales){
 
-
-
-if(productosActuales.empty()){
-			system("clear");
-			cout<< "          -No hay Productos en el Sistema-" << endl;
-			// sleep(2);
-			system("clear");
-}else{
-			cout<< "Lista de productos actualizada: " << endl;
-			for (DtProductoBase* dtPB : productosActuales){
-									cout << *dtPB << endl;
-			}
+										cout << *dtPB << endl;
+				}
 
 
 
-			cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
-			cin >> codProd;
-			/*Producto* p = productosActuales->getProducto(codProd);*/
+				cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
+				cin >> codProd;
+				/*Producto* p = productosActuales->getProducto(codProd);*/
 
-			for (DtProductoBase* dtPB : productosActuales){
-						if(codProd.compare(dtPB->getCodigo()) == 0){
+				for (DtProductoBase* dtPB : productosActuales){
 
+							if(codProd.compare(dtPB->getCodigo()) == 0){
 
-									encontro = true;
-									system("clear");
-									iConBjP->seleccionarProducto(codProd);
-									iConBjP->eliminarProducto();
+										encontro = true;
+										system("clear");
+										iConBjP->seleccionarProducto(codProd);
+										iConBjP->eliminarProducto();
+										cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
+										sleep(4);
+										system("clear");
+							}
+				}
 
-									cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-									// sleep(4);
-									system("clear");
-						}
-			}
+				if((encontro == false)&&(codProd.compare(cero) != 0)){
 
-			if((encontro == false)&&(codProd.compare(cero) != 0)){
-						system("clear");
-						cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-						// sleep(2);
-						iConBjP->cancelarBajaProducto();
-						bajaProducto();
-			}
-			else if(codProd.compare(cero) == 0){
-						system("clear");
-			}
+							system("clear");
+							cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
+							sleep(2);
+							iConBjP->cancelarBajaProducto();
+							bajaProducto();
+				}
+				else if(codProd.compare(cero) == 0){
 
+							system("clear");
+				}
 
-}
+	}
 }
 
 void informacionProducto() {
@@ -227,6 +230,7 @@ int main(){
 	iConFac = fabrica->getIControladorFacturacion();
 	iConInV = fabrica->getIControladorIniciarVenta();
 	iConQtP = fabrica->getIControladorQuitarProducto();
+	iConAsMM = fabrica->getIControladorAsignarMesasAMozos();
 
 	desplegarMenu();
 

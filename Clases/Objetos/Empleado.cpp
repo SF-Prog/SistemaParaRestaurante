@@ -25,5 +25,5 @@ void Empleado::setNombre(string nombre) {
 Empleado::~Empleado() {};
 
 //Metodos
-list<int*> mesasAsignadasSinVenta() {}
+list<int> mesasAsignadasSinVenta() {}
 void asignarMesas(list<int>, VentaLocal*) {}
