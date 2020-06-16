@@ -96,19 +96,18 @@ void facturacionDeUnaVenta() {
 
 	int idMesa;
 	float descuento;
-	DtFacturaLocal DTFL;
+	DtFacturaLocal dtFL;
 
 	cout << "\nIngrese Nº de mesa: ";
 	cin >> idMesa;
 	cout << "\nDescuento: ";
 	cin >> descuento;
 
-	DTFL = iConFac->facturar(idMesa, descuento);
+	dtFL = iConFac->facturar(idMesa, descuento);
 
 	cout << "\nSe ha generadola siguiente factura:\n ";
 	cout << "\n┌──────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
-	cout << "\n|   Código de venta: "<< DTFL.getCodVenta()<< "|";
-
+	cout << "\n|   Código de venta: "<< dtFL.getCodVenta()<< "|";
 
 }
 
