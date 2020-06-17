@@ -7,6 +7,12 @@
 bool ControladorFuncionesAuxiliares::validarProducto(string codigo, float precio) {
 
 }
+
+bool ControladorFuncionesAuxiliares::estaMesaTieneVenta(int mesa){
+    ManejadorMesa* mM= ManejadorMesa::getInstancia();
+    Mesa* M = mM->getMesa(mesa);
+    return  M->tieneVenta();
+}
 void ControladorFuncionesAuxiliares::altaProducto(string codigo, string descripcion, float precio) {
 	cout << endl << "TIPO DE PRODUCTO" << endl;
 	cout << "\t1.COMUN" << endl;

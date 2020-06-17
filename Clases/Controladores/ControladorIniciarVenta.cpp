@@ -1,5 +1,6 @@
 #include "../Manejadores/ManejadorEmpleado.h"
 #include "../Manejadores/ManejadorVenta.h"
+#include "../Manejadores/ManejadorMesa.h"
 #include "../Objetos/Mozo.h"
 #include "ControladorIniciarVenta.h"
 
@@ -40,4 +41,14 @@ void ControladorIniciarVenta::confirmarIniciarVenta() {
 	mo->asignarMesas(this->getMesas(), vl);
 	ManejadorVenta* mV = ManejadorVenta::getInstancia();
 	mV->agregarVenta(vl);
+}
+
+list <int> ControladorIniciarVenta::listarMesas() {
+    ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    list<Mesa*> mesas = mM->getMesas();
+    list<int> numeroMesa;
+    for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); it++){
+        numeroMesa.push_back((*it)->getNumero());
+    }
+    return numeroMesa;
 }
