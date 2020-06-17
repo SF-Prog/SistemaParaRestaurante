@@ -23,6 +23,7 @@ public:
     list<int> seleccionarMesas(list<int>);
     void cancelarIniciarVenta();
     void confirmarIniciarVenta();
+    list<int> listarMesas();
 };
 
 #endif //CONTROLADORINICIARVENTA

@@ -78,7 +78,36 @@ void agregarProductoAVenta() {
 	cout << "_____________________________________________________" << endl;
 	cout << "===A G R E G A R   P R O D U C T O   A   V E N T A===" << endl;
 	cout << "_____________________________________________________" << endl;
-}
+    //Listo las mesas para que seleccione a cual debera agregar producto
+    cout << "Seleccione la mesa para agregar producto: " << endl;
+    bool salir=false;
+    bool tieneVentaLocal;
+    while (!salir){
+        list <int>mesas= iConInV->listarMesas();
+        for (list<int>::iterator it = mesas.begin(); it!=mesas.end(); ++it){
+            cout << "\t>" << *it;
+            cout << "\t" << endl;
+        }
+        cout << "\t>>>" << endl;
+        int mesaSeleccionada;
+        cin >> mesaSeleccionada;
+        tieneVentaLocal=iConFuA->estaMesaTieneVenta(mesaSeleccionada);
+        if(tieneVentaLocal){
+            cout << "La Mesa seleccionada no posee ventas iniciadas" << endl;
+            char S;
+            cout << "Para salir presione S, C para continuar" << endl;
+            cin >> S;
+            if(S=='S' || S=='s'){
+                salir=true;
+            }
+        }else{
+                cout<< "aca operamos para agregar producto" << endl;
+        }
+    }
+
+    }
+
+
 
 void quitarProductoAVenta() {
 	system("clear");
@@ -123,7 +152,11 @@ void asignarMozosAMesas() {
 
 
 			iConAsMM->asignarMozosMesas();
+<<<<<<< HEAD
 		//	sleep(2);
+=======
+			//sleep(2);
+>>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
 
 }
 
@@ -166,7 +199,11 @@ void bajaProducto() {
 										iConBjP->seleccionarProducto(codProd);
 										iConBjP->eliminarProducto();
 										cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
+<<<<<<< HEAD
 										// sleep(4);
+=======
+										//sleep(4);
+>>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
 										system("clear");
 							}
 				}
@@ -175,7 +212,11 @@ void bajaProducto() {
 
 							system("clear");
 							cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
+<<<<<<< HEAD
 							// sleep(2);
+=======
+							//sleep(2);
+>>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
 							iConBjP->cancelarBajaProducto();
 							bajaProducto();
 				}

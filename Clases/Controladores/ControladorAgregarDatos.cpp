@@ -11,6 +11,7 @@
 
 #include "ControladorAgregarDatos.h"
 #include "ControladorAgregarDatos.h"
+#include <list>
 
 void ControladorAgregarDatos::cargarDatos(){
     //empleados
@@ -21,9 +22,10 @@ void ControladorAgregarDatos::cargarDatos(){
     mE->agregarEmpleado(m);
     mE->agregarEmpleado(m2);
     mE->agregarEmpleado(m3);
+
     //ventas
     ManejadorVenta* mV=ManejadorVenta::getInstancia();
-    Venta* vL=new VentaLocal("V01");
+    VentaLocal* vL=new VentaLocal("V01");
     Venta* vL2= new VentaLocal("V02");
     Venta* vL3= new VentaLocal("V03");
     mV->agregarVenta(vL);
@@ -62,6 +64,7 @@ void ControladorAgregarDatos::cargarDatos(){
 		mM->agregarMesa(mesa8);
 		mM->agregarMesa(mesa9);
 
+<<<<<<< HEAD
     //Facturacion
   /*  DtFactura* dtFact;
     DtFechaHora fecha;
@@ -80,4 +83,11 @@ void ControladorAgregarDatos::cargarDatos(){
 */
 
 
+=======
+		//asginar mesa a mozo
+		mesa1->setVentaLocal(vL);
+		list<int>mesasLibres = m2->mesasAsignadasSinVenta();
+		m2->asignarMesas(mesasLibres,vL);
+>>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
   }
+

@@ -11,6 +11,7 @@ public:
     virtual list<int> seleccionarMesas(list<int>) = 0;
     virtual void cancelarIniciarVenta() = 0;
     virtual void confirmarIniciarVenta() = 0;
+    virtual list<int> listarMesas() = 0;
 };
 
 #endif //ICONTROLADORINICIARVENTA
