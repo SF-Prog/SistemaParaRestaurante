@@ -108,7 +108,7 @@ void facturacionDeUnaVenta() {
 	dtFL = iConFac->facturar(idMesa, descuento);
 
 	cout << "\nSe ha generadola siguiente factura:\n ";
-	cout << "\n┌──────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
+	cout << "\n┌──────────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
 	cout << "\n|   Código de venta: "<< dtFL.getCodVenta()<< "|";
 
 }
@@ -123,7 +123,7 @@ void asignarMozosAMesas() {
 
 
 			iConAsMM->asignarMozosMesas();
-			sleep(2);
+		//	sleep(2);
 
 }
 
@@ -143,7 +143,7 @@ void bajaProducto() {
 
 				system("clear");
 				cout<< "          -No hay Productos en el Sistema-" << endl;
-				sleep(2);
+				//sleep(2);
 				system("clear");
 	}else{
 
@@ -166,7 +166,7 @@ void bajaProducto() {
 										iConBjP->seleccionarProducto(codProd);
 										iConBjP->eliminarProducto();
 										cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-										sleep(4);
+										// sleep(4);
 										system("clear");
 							}
 				}
@@ -175,7 +175,7 @@ void bajaProducto() {
 
 							system("clear");
 							cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-							sleep(2);
+							// sleep(2);
 							iConBjP->cancelarBajaProducto();
 							bajaProducto();
 				}

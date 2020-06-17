@@ -4,6 +4,12 @@
 #include "../Manejadores/ManejadorProducto.h"
 #include "../Manejadores/ManejadorVenta.h"
 #include "../Manejadores/ManejadorMesa.h"
+#include "../DataTypes/DtFacturaLocal.h"
+#include "../DataTypes/DtFactura.h"
+#include "../DataTypes/DtFecha.h"
+#include "../DataTypes/DtProductoFactura.h"
+
+#include "ControladorAgregarDatos.h"
 #include "ControladorAgregarDatos.h"
 
 void ControladorAgregarDatos::cargarDatos(){
@@ -55,4 +61,23 @@ void ControladorAgregarDatos::cargarDatos(){
 		mM->agregarMesa(mesa7);
 		mM->agregarMesa(mesa8);
 		mM->agregarMesa(mesa9);
+
+    //Facturacion
+  /*  DtFactura* dtFact;
+    DtFechaHora fecha;
+    DtProductoFactura* dtPF;
+    list<DtProductoFactura*> col_dtPF;
+
+  //col_dtPF = new list<DtProductoFactura*>;
+  dtPF = new DtProductoFactura("Sandwich Palta - Lechuga y tomates", 133, 1);
+  // col_dtPF.push_back(dtPF);
+  dtPF = new DtProductoFactura("Pan", 19, 1);
+  // col_dtPF.push_back(dtPF);
+
+
+    fecha = new DtFechaHora(16, 6, 2020,10,0,0);
+    dtFact = new DtFactura("V01", fecha, col_dtPF, 200, 0, 200, 250);
+*/
+
+
   }

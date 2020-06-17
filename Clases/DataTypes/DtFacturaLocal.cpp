@@ -18,3 +18,4 @@ void DtFacturaLocal::setNombreMozo(string nombreMozo) {
 DtFacturaLocal::~DtFacturaLocal() {}
 
 //Metodos
+//Aca crear ostream
