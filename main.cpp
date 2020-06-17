@@ -78,7 +78,23 @@ void agregarProductoAVenta() {
 	cout << "_____________________________________________________" << endl;
 	cout << "===A G R E G A R   P R O D U C T O   A   V E N T A===" << endl;
 	cout << "_____________________________________________________" << endl;
-}
+    //Listo las mesas para que seleccione a cual debera agregar producto
+    cout << "Seleccione la mesa para agregar producto: " << endl;
+    list <int>mesas= iConInV->listarMesas();
+    for (list<int>::iterator it = mesas.begin(); it!=mesas.end(); ++it){
+        cout << "\t>" << *it;
+        cout << "\t" << endl;
+    }
+    cout << ">>>" << endl;
+    int mesaSeleccionada;
+    cin >> mesaSeleccionada;
+
+    //bool a=iConInV->(mesaSeleccionada);
+    //if(a){
+        cout << "La Mesa seleccionada no posee ventas iniciadas" << endl;
+    }
+
+
 
 void quitarProductoAVenta() {
 	system("clear");
@@ -123,7 +139,7 @@ void asignarMozosAMesas() {
 
 
 			iConAsMM->asignarMozosMesas();
-			sleep(2);
+			//sleep(2);
 
 }
 
