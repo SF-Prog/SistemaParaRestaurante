@@ -2,6 +2,7 @@
 #define ICONTROLADORASIGNARMESASAMOZOS
 
 #include "../DataTypes/DtAsignacion.h"
+#include "../Manejadores/ManejadorMesa.h"
 
 class IControladorAsignarMesasAMozos {
 public:

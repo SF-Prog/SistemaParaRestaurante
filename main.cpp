@@ -23,6 +23,7 @@ void quitarProductoAVenta();
 void facturacionDeUnaVenta();
 //OPERACION6 ASIGNAR MOZOS A MESAS AUTOMATICAMENTE
 void asignarMozosAMesas();
+bool primeraVezAsignacion = true;
 //OPERACION7 BAJA PRODUCTO
 void bajaProducto();
 //OPERACION8 INFORMACION PRODUCTO
@@ -149,14 +150,20 @@ void asignarMozosAMesas() {
 	cout << "======A S I G N A R   M O Z O S   A   M E S A S======" << endl;
 	cout << "_____________________________________________________" << endl;
 
-
-
-			iConAsMM->asignarMozosMesas();
-<<<<<<< HEAD
-		//	sleep(2);
-=======
-			//sleep(2);
->>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
+	if(primeraVezAsignacion == true){
+				list<DtAsignacion*> listaAsignaciones = iConAsMM->asignarMozosMesas();
+				for(DtAsignacion* dta: listaAsignaciones){
+							cout << *dta << endl;
+				}
+				primeraVezAsignacion = false;
+				sleep(4);
+				system("clear");
+	}else{
+				system("clear");
+				std::cout << "---LAS MESAS ACTUALES YA FUERON ASIGNADAS---" << '\n';
+				sleep(2);
+				system("clear");
+	}
 
 }
 
@@ -199,11 +206,11 @@ void bajaProducto() {
 										iConBjP->seleccionarProducto(codProd);
 										iConBjP->eliminarProducto();
 										cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-<<<<<<< HEAD
-										// sleep(4);
-=======
-										//sleep(4);
->>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
+
+									  sleep(4);
+
+										sleep(4);
+
 										system("clear");
 							}
 				}
@@ -212,11 +219,10 @@ void bajaProducto() {
 
 							system("clear");
 							cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-<<<<<<< HEAD
-							// sleep(2);
-=======
-							//sleep(2);
->>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
+
+							sleep(2);
+
+							sleep(2);
 							iConBjP->cancelarBajaProducto();
 							bajaProducto();
 				}

@@ -9,18 +9,26 @@ DtAsignacion::DtAsignacion(string id, list<int> lm){
 				this->mesasAsignadas = lm;
 }
 //Getters y Setters
-string DtAsignacion::getIdMozo(){
+string DtAsignacion::getIdMozoAsignacion(){
 			return this->idMozo;
 }
-void DtAsignacion::setIdMozo(string id){
+void DtAsignacion::setIdMozoAsignacion(string id){
 			this->idMozo = id;
 }
-list<int> DtAsignacion::getMesasAsignadas(){
+list<int> DtAsignacion::getMesasAsignacion(){
 			return this->mesasAsignadas;
 }
-void DtAsignacion::setMesasAsignadas(list<int> lm){
+void DtAsignacion::setMesasAsignacion(list<int> lm){
 			this->mesasAsignadas = lm;
 }
 
 //Destructores
 DtAsignacion::~DtAsignacion(){}
+//Metodos
+ostream& operator<<(ostream& salida, const DtAsignacion& dt){
+    salida << "El mozo con ID : " << dt.idMozo << " tiene asignadas las mesas: ";
+		for(int numMesa : dt.mesasAsignadas){
+					salida << "  " << numMesa;
+		}
+	  return salida;
+}

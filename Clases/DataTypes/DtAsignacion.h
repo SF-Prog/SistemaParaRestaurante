@@ -17,13 +17,15 @@ public:
 		DtAsignacion();
 		DtAsignacion(string, list<int>);
 		//Getters y Setters
-		string getIdMozo();
-		void setIdMozo(string);
-		list<int> getMesasAsignadas();
-		void setMesasAsignadas(list<int>);
+		string getIdMozoAsignacion();
+		void setIdMozoAsignacion(string);
+		list<int> getMesasAsignacion();
+		void setMesasAsignacion(list<int>);
 
 		//Destructores
 		~DtAsignacion();
+		//Metodos
+		friend ostream& operator<<(ostream&, const DtAsignacion&);
 };
 
 #endif  //DTASIGNACION

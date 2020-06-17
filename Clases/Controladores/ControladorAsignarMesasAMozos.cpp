@@ -12,44 +12,49 @@ void ControladorAsignarMesasAMozos::setListaAsignacion(list<DtAsignacion*> la){
 }
 //Metodos
 list<DtAsignacion*> ControladorAsignarMesasAMozos::asignarMozosMesas(){
-			std::cout << "A" << '\n';
-			ManejadorMesa* mm;
-			std::cout << "AA" << '\n';
-			ManejadorEmpleado* me;
-			std::cout << "AAA" << '\n';
-			list<DtAsignacion*> listaDtA;
-			std::cout << "AAAA" << '\n';
-			list<Mesa*> mesasActuales = mm->getMesas();//Explotando ACA
-std::cout << "AAAAA" << '\n';
-			list<Empleado*> empleadosActuales = me->getEmpleados();
-			list<Mozo*> mozosActuales;
-std::cout << "AAAAAA" << '\n';
-			float MeMo = (mesasActuales.size()/empleadosActuales.size());
-std::cout << "AAAAAAA" << '\n';
-			float resto = (mesasActuales.size()%empleadosActuales.size());
-			int ultimaMesaAsignada = 0;
-			cout<< resto << "--------------" <<MeMo << endl;
-			for (Empleado* e : empleadosActuales){
-						DtAsignacion* dtA;
-						list<int> mesasParaMozo;
-						if(Mozo* m = dynamic_cast<Mozo*>(e)){
-									dtA->setIdMozo(m->getIdEmpleado());
-						}
 
+			ManejadorMesa* mm = ManejadorMesa::getInstancia();
+
+			list<Mesa*> mesasActuales = mm->getMesas();
+
+			ManejadorEmpleado* me = ManejadorEmpleado::getInstancia();
+
+			list<Empleado*> empleadosActuales = me->getEmpleados();
+
+			list<DtAsignacion*> listaDtA;
+		  //Explotando ACA
+
+			float MeMo = (mesasActuales.size()/empleadosActuales.size());
+			float resto = (mesasActuales.size()%empleadosActuales.size());
+			int ultimaMesaAsignada = 1;// Numero de Mesas desde el 1 al 8
+
+			for (Empleado* e : empleadosActuales){
+						Mozo* m = dynamic_cast<Mozo*>(e);
+						DtAsignacion* dtA = new DtAsignacion();
+						list<int> mesasAsignar;
+						list<Mesa*> mesasParaMozo;
+						dtA->setIdMozoAsignacion(m->getIdEmpleado()); 
+						int pos = ultimaMesaAsignada;
 						for(int i=0 ; i<MeMo ; i++){
-									Mesa* ma = mm->getMesa(i);
-									mesasParaMozo.push_back(ma->getNumero());
+							/*if(mesa no esta asignada me->tieneVenta){}*/
+									Mesa* ma = mm->getMesa(pos+i);
+									mesasParaMozo.push_back(ma);
+									mesasAsignar.push_back(ma->getNumero());
 									ultimaMesaAsignada++;
 						}
-						dtA->setMesasAsignadas(mesasParaMozo);
+						if(resto > 0){
+									Mesa* mr = mm->getMesa(ultimaMesaAsignada);
+									mesasParaMozo.push_back(mr);
+									mesasAsignar.push_back(mr->getNumero());
+									ultimaMesaAsignada++;
+									resto--;
+						}
+						m->setMesas(mesasParaMozo);
+						dtA->setMesasAsignacion(mesasAsignar);
 						listaDtA.push_back(dtA);
 			}
-			this->setListaAsignacion(listaDtA);
-			for(int j=0;j<resto;j++){
-						int pos = ultimaMesaAsignada + j;
-						Mesa* mr = mm->getMesa(pos);
+		//	this->setListaAsignacion(listaDtA);
 
-			}
 			return listaDtA;
 
 }

@@ -53,7 +53,7 @@ void ControladorAgregarDatos::cargarDatos(){
 		Mesa* mesa6 = new Mesa(6);
 		Mesa* mesa7 = new Mesa(7);
 		Mesa* mesa8 = new Mesa(8);
-		Mesa* mesa9 = new Mesa(9);
+
 		mM->agregarMesa(mesa1);
 		mM->agregarMesa(mesa2);
 		mM->agregarMesa(mesa3);
@@ -62,8 +62,7 @@ void ControladorAgregarDatos::cargarDatos(){
 		mM->agregarMesa(mesa6);
 		mM->agregarMesa(mesa7);
 		mM->agregarMesa(mesa8);
-		mM->agregarMesa(mesa9);
-
+/*
 <<<<<<< HEAD
     //Facturacion
   /*  DtFactura* dtFact;
@@ -80,7 +79,7 @@ void ControladorAgregarDatos::cargarDatos(){
 
     fecha = new DtFechaHora(16, 6, 2020,10,0,0);
     dtFact = new DtFactura("V01", fecha, col_dtPF, 200, 0, 200, 250);
-*/
+
 
 
 =======
@@ -89,5 +88,5 @@ void ControladorAgregarDatos::cargarDatos(){
 		list<int>mesasLibres = m2->mesasAsignadasSinVenta();
 		m2->asignarMesas(mesasLibres,vL);
 >>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
+*/
   }
-
