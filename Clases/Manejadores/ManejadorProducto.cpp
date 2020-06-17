@@ -32,3 +32,7 @@ void ManejadorProducto::removerProducto(Producto* p) {
 bool ManejadorProducto::agregarProducto(Producto* p) {
     this->productos.insert(pair<string, Producto*>(p->getCodigo(), p));
 }
+bool ManejadorProducto::existeProducto(string cod) {
+    map<string, Producto*>::iterator it = this->productos.find(cod);
+    return (it != this->productos.end());
+}

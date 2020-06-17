@@ -7,9 +7,9 @@ using namespace std;
 
 class IControladorFuncionesAuxiliares {
 public:
-	virtual bool validarProducto(string, float) = 0;
 	virtual void altaProducto(string, string, float) = 0;
 	virtual bool estaMesaTieneVenta(int) = 0;
+	virtual bool existeProducto(string) = 0;
 };
 
 #endif //ICONTROLADORFUNCIONESAUXILIARES

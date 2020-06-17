@@ -49,9 +49,8 @@ list<DtProductoBase*> ControladorAltaProducto::listarProductosComunes() {
 	ManejadorProducto* mP = ManejadorProducto::getInstancia();
 	list<DtProductoBase*> dtproductos;
 	for (Producto* p : mP->getProductos()) {
-		Comun* c = dynamic_cast<Comun*>(p);
-		if (c != NULL)
-			dtproductos.push_back(c->getDtProductoBase());
+		if (p->getTipoProducto() == comun)
+			dtproductos.push_back(p->getDtProductoBase());
 	}
 	return dtproductos;
 }

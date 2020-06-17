@@ -1,24 +1,23 @@
 #ifndef CONTROLADORASIGNARMESASAMOZOS
 #define CONTROLADORASIGNARMESASAMOZOS
 
+#include "../Interfaces/IControladorAsignarMesasAMozos.h"
 #include "../Manejadores/ManejadorMesa.h"
 #include "../Manejadores/ManejadorEmpleado.h"
-#include "../Interfaces/IControladorAsignarMesasAMozos.h"
 #include "../Objetos/VentaLocal.h"
 
 class ControladorAsignarMesasAMozos : public IControladorAsignarMesasAMozos {
-		list<DtAsignacion*> listaAsignacion;
+	list<DtAsignacion*> listaAsignacion;
 public:
-		//Getters y Setters
-		list<DtAsignacion*> getListaAsignacion();
-		void setListaAsignacion(list<DtAsignacion*>);
+	//Getters y Setters
+	list<DtAsignacion*> getListaAsignacion();
+	void setListaAsignacion(list<DtAsignacion*>);
 
+	//Destructores
+	~ControladorAsignarMesasAMozos();
 
-		//Destructores
-		~ControladorAsignarMesasAMozos();
-
-		//Metodos
-		list<DtAsignacion*> asignarMozosMesas();
+	//Metodos
+	list<DtAsignacion*> asignarMozosMesas();
 };
 
 #endif //CONTROLADORASIGNARMESASAMOZOS

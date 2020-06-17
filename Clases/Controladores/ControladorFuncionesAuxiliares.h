@@ -5,9 +5,9 @@
 
 class ControladorFuncionesAuxiliares : public IControladorFuncionesAuxiliares {
 public:
-    bool validarProducto(string, float);
     void altaProducto(string, string, float);
     bool estaMesaTieneVenta(int);
+    bool existeProducto(string);
 };
 
 #endif //CONTROLADORFUNCIONESAUXILIARES

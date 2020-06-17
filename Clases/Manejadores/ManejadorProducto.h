@@ -24,6 +24,7 @@ public:
     Producto* getProducto(string);
     void removerProducto(Producto*);
     bool agregarProducto(Producto*);
+    bool existeProducto(string);
 };
 
 #endif //MANEJADORPRODUCTO

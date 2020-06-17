@@ -6,7 +6,7 @@
 
 class IControladorAsignarMesasAMozos {
 public:
-		virtual list<DtAsignacion*> asignarMozosMesas() = 0;
+	virtual list<DtAsignacion*> asignarMozosMesas() = 0;
 };
 
 #endif //ICONTROLADORASIGNARMESASAMOZOS

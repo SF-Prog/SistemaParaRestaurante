@@ -1,6 +1,7 @@
 #ifndef ICONTROLADORALTAPRODUCTO
 #define ICONTROLADORALTAPRODUCTO
 
+#include <list>
 #include "../DataTypes/DtProductoBase.h"
 #include "../DataTypes/DtProductoCantidad.h"
 
