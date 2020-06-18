@@ -126,16 +126,16 @@ void agregarProductoAVenta() {
 	cout << "_____________________________________________________" << endl;
     //Listo las mesas para que seleccione a cual debera agregar producto
     cout << "Seleccione la mesa para agregar producto: " << endl;
-    bool salir=false;
+    bool exitAgregar=true;
     bool tieneVentaLocal;
-    while (!salir) {
+    while (exitAgregar) {
         list <int>mesas= iConInV->listarMesas();
         for (list<int>::iterator it = mesas.begin(); it!=mesas.end(); ++it){
-            cout << "\t>" << *it;
+            cout << "\tMesa Nro.: " << *it;
             cout << "\t" << endl;
         }
-        cout << "\t>>>" << endl;
-        int mesaSeleccionada;
+        cout << "Seleccione Mesa: " << endl;
+        int mesaSeleccionada=0;
         cin >> mesaSeleccionada;
         tieneVentaLocal=iConFuA->estaMesaTieneVenta(mesaSeleccionada);
         if(tieneVentaLocal){
@@ -144,26 +144,86 @@ void agregarProductoAVenta() {
             cout << "Para salir presione S, C para continuar" << endl;
             cin >> S;
             if(S=='S' || S=='s'){
-                salir=true;
+                exitAgregar=false;
             }
         }else{
                 int prod=0;
-                int seleccion;
+                string seleccion;
+                int cantSeleccion=0;
                 cout<< "Seleccione el producto que desea agregar \n\n \t\t 1.Producto Comun \n\t\t 2.Producto Menu" << endl;
                 cout<< ">>>" << endl;
                 cin >> prod;
-                switch (prod){
-                    case 1: list<DtProductoBase*> ProdComunes = iConAlP->listarProductosComunes();
-                    for (list<DtProductoBase*>::iterator it = ProdComunes.begin(); it != ProdComunes.end(); it++){
-                        cout << "\tProducto:  "<< (*it)->getDescripcion();
-                        cout << "\t  Codigo: "<< (*it)->getCodigo();
-                        cout << "\t" << endl;
+                bool exitElegirProd=true;
+                while(exitElegirProd){
+                    switch (prod){
+                        case 1: {
+                            list<DtProductoBase *> ProdComunes = iConAlP->listarProductosComunes();
+                            cout << "Producto\t\tCodigo\t" <<endl;
+                            for (list<DtProductoBase *>::iterator it = ProdComunes.begin(); it != ProdComunes.end(); it++) {
+                                cout << "" << (*it)->getDescripcion();
+                                cout << "\t\t\t" << (*it)->getCodigo();
+                                cout << "\t" << endl;
+                            }
+                            cout << "Ingrese el codigo: " << endl;
+                            cin >> seleccion;
+                            iConAgP->seleccionarMesa(mesaSeleccionada);
+                            cout << "Ingrese la cantidad: " << endl;
+                            cin >> cantSeleccion;
+                            VentaLocal* v= iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);     //obtengo id de la ventalLocal de la mesa que selecciono
+                            DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
+                            if(iConAgP->hayEsteProducotenEnEstaVenta(v, seleccion)){
+                                iConAgP->incrementarProductoEnVenta(v, *dtPC);
+                                cout << "Se incremento la cantidad del Producto en la venta" << endl;
+                            }else{
+                                iConAgP->confirmarAgregarProductoVenta();
+                                cout << "Se agrego un nuevo producto a la venta"<< endl;
+                            }
+                            cout << "Desea agregar otro producto? \n 1.S 2.N" <<endl;
+                            int  continuar;
+                            cin >> continuar;
+                            if(continuar == 2 ){
+                                exitElegirProd=false;
+                                exitAgregar=false;
 
+                            }
+                                else break;
 
+                        }
+                        case 2: {
+                            list<DtProductoBase*> prodMenu = iConAlP->listarProductoMenu();
+                            cout << "Producto\t\tCodigo\t" <<endl;
+                            for(list<DtProductoBase*>::iterator it =prodMenu.begin(); it != prodMenu.end(); it++){
+                                cout << ""<< (*it)->getDescripcion();
+                                cout << "\t\t\t" << (*it)->getCodigo();
+                                cout << "\t" << endl;
+                            }
+                            cout << "Ingrese el codigo: " << endl;
+                            cin >> seleccion;
+                            iConAgP->seleccionarMesa(mesaSeleccionada);
+                            cout << "Ingrese la cantidad: " << endl;
+                            cin >> cantSeleccion;
+                            VentaLocal* v= iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);     //obtengo id de la ventalLocal de la mesa que selecciono
+                            DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
+                            if(iConAgP->hayEsteProducotenEnEstaVenta(v, seleccion)){
+                                iConAgP->incrementarProductoEnVenta(v, *dtPC);
+                                cout << "Se incremento la cantidad del Producto en la venta" << endl;
+                            }else{
+                                iConAgP->confirmarAgregarProductoVenta();
+                                cout << "Se agrego un nuevo producto a la venta"<< endl;
+                            }
+                            cout << "Desea agregar otro producto? \n 1.S 2.N" <<endl;
+                            int  continuar;
+                            cin >> continuar;
+                            if(continuar == 2 ){
+                                exitElegirProd=false;
+                                exitAgregar=false;
+
+                            }
+                            else break;
+
+                        }
                     }
-                    cout << ">>>" << endl;
-                    cin >> seleccion;
-                }
+            }
         }
     }
 }
