@@ -19,6 +19,7 @@ public:
     virtual ~DtFacturaLocal();
 
     //Metodos
+    friend ostream& operator <<(ostream&, const DtFacturaLocal&);
 };
 
 #endif //DTFACTURALOCAL

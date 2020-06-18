@@ -39,6 +39,7 @@ public:
     ~DtFactura();
 
     //Metodos
+    friend ostream& operator <<(ostream&, const DtFactura&);
 };
 
 #endif //DTFACTURA

@@ -20,5 +20,6 @@ DtFacturaLocal ControladorFacturacion::facturar(int idMesa, float descuento) {
 		string nomMozo = v->getNombreMozo();
 
 		DtFacturaLocal dtf = DtFacturaLocal(cod, fh, dtproductos, subtotal, descuento, subtotal * (1 - descuento), subtotal * (1 - descuento) * 1.22, nomMozo);
+
 		return dtf;
 }

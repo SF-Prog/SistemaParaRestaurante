@@ -60,3 +60,16 @@ void DtFactura::setTotalMontoVentaConIva(float montoTotalVentaConIva) {
 DtFactura::~DtFactura() {}
 
 //Metodos
+ostream& operator <<(ostream& salida, const DtFactura& dtf) {
+	cout <<"Codigo de venta:" << dtf.codVenta << endl;
+  cout <<"Fecha:" << dtf.fechaEmision << endl;
+  for (DtProductoFactura* dtP : dtf.productos){
+    cout <<"Descripción: " << dtP->getDescripcion() << "  Precio: " << dtP->getPrecio() << "  Cantidad: " << dtP->getCantidad() << endl;
+  }
+  cout <<"Subtotal Venta:" << dtf.subtotalVenta << endl;
+  cout <<"Descuento:" << dtf.descuento << endl;
+  cout <<"Total Venta:" << dtf.montoTotalVenta << endl;
+  cout <<"Total Venta con IVA" << dtf.montoTotalVentaConIva << endl;
+
+  return salida;
+}

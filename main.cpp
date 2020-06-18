@@ -1,4 +1,5 @@
 #include "Clases/Fabrica.h"
+#include <unistd.h> //Para el sleep
 
 //FABRICA
 Fabrica* fabrica;
@@ -74,9 +75,9 @@ void altaProducto() {
 
 				int tipoProducto;
 				cin >> tipoProducto;
-				if (tipoProducto < 1 || tipoProducto > 2) {}
+				if (tipoProducto < 1 || tipoProducto > 2) {
 					throw invalid_argument("\nERROR! opcion invalida.");
-				else {
+				}else {
 					switch (tipoProducto) {
 						case 1: {
 							procesarProductoComun(codigo, descripcion);
@@ -93,9 +94,9 @@ void altaProducto() {
 
 			cout << endl << "¿Desea continuar agregando pedidos? (y/n): ";
 			cin >> confirma;
-			if (confirma == "y" || confirma == "Y")
+			if (confirma == "y" || confirma == "Y"){
 				finalizar = false;
-			else {
+			}else {
 				finalizar = true;
 				if (confirma != "n" && confirma != "N")
 					throw invalid_argument("\nERROR! opcion invalida.");
@@ -167,17 +168,39 @@ void facturacionDeUnaVenta() {
 	int idMesa;
 	float descuento;
 	DtFacturaLocal dtFL;
+	bool encontro;
 
 	cout << "\nIngrese Nº de mesa: ";
 	cin >> idMesa;
+	sleep(2);
 	cout << "\nDescuento: ";
 	cin >> descuento;
 
-	dtFL = iConFac->facturar(idMesa, descuento);
+	ManejadorMesa* mM = ManejadorMesa::getInstancia();
+	list<Mesa*> listaMesas = mM->getMesas();
+	encontro = false;
+	for (Mesa* pMesa : listaMesas){
+		if(pMesa->getNumero() == idMesa){
+			encontro = true;
+		}
+	}
 
-	cout << "\nSe ha generadola siguiente factura:\n ";
-	cout << "\n┌──────────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
-	cout << "\n|   Código de venta: "<< dtFL.getCodVenta()<< "|";
+	if (encontro){
+		cout << "\n encontro ";
+		//dtFL = iConFac->facturar(idMesa, descuento);
+		cout << "\nSe ha generadola siguiente factura:\n ";
+		cout << dtFL;
+
+		//	cout << "\n┌──────────────────────────────────────────────┐";//─(alt+196)┘(alt+217)┌(alt+218)┐(alt+191)└(alt+192)
+			//cout << "\n|   Código de venta: "<< dtFL.getCodVenta()<< "|";
+
+	}else{
+		cout << "\n no encontro ";
+	}
+
+
+
+
 }
 
 void asignarMozosAMesas() {

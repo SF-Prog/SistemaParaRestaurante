@@ -1,5 +1,6 @@
 #include "../Controladores/ControladorAgregarProducto.h"
 #include "../Controladores/ControladorIniciarVenta.h"
+// #include "../Controladores/ControladorFacturacion.h"
 #include "../Manejadores/ManejadorEmpleado.h"
 #include "../Manejadores/ManejadorProducto.h"
 #include "../Manejadores/ManejadorVenta.h"
@@ -62,31 +63,26 @@ void ControladorAgregarDatos::cargarDatos(){
 		mM->agregarMesa(mesa6);
 		mM->agregarMesa(mesa7);
 		mM->agregarMesa(mesa8);
-/*
-<<<<<<< HEAD
+
     //Facturacion
-  /*  DtFactura* dtFact;
+    DtFactura* dtFact;
     DtFechaHora fecha;
     DtProductoFactura* dtPF;
     list<DtProductoFactura*> col_dtPF;
 
   //col_dtPF = new list<DtProductoFactura*>;
   dtPF = new DtProductoFactura("Sandwich Palta - Lechuga y tomates", 133, 1);
-  // col_dtPF.push_back(dtPF);
+  col_dtPF.push_back(dtPF);
   dtPF = new DtProductoFactura("Pan", 19, 1);
-  // col_dtPF.push_back(dtPF);
+  col_dtPF.push_back(dtPF);
+
+  dtFact = new DtFactura("V01", fecha.actual(), col_dtPF, 200, 0, 200, 250);
 
 
-    fecha = new DtFechaHora(16, 6, 2020,10,0,0);
-    dtFact = new DtFactura("V01", fecha, col_dtPF, 200, 0, 200, 250);
-
-
-
-=======
+/*
 		//asginar mesa a mozo
 		mesa1->setVentaLocal(vL);
 		list<int>mesasLibres = m2->mesasAsignadasSinVenta();
 		m2->asignarMesas(mesasLibres,vL);
->>>>>>> 08c37b0791a7addbc79093d101738f5a6ef41c72
 */
-  }
+}
