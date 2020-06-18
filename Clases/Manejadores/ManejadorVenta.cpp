@@ -1,4 +1,6 @@
 #include "ManejadorVenta.h"
+#include "../Objetos/VentaLocal.h"
+#include "../DataTypes/DtProductoCantidad.h"
 
 //Constructor
 ManejadorVenta::ManejadorVenta() {}
@@ -32,3 +34,4 @@ void ManejadorVenta::removerVenta(Venta* v) {
 bool ManejadorVenta::agregarVenta(Venta* v) {
     this->ventas.insert(pair<string, Venta*>(v->getCodigo(), v));
 }
+

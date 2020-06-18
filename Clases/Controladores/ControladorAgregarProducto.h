@@ -22,7 +22,9 @@ public:
     void seleccionarProducto(DtProductoCantidad);
     list<DtProductoBase*> listarProductos();
     void cancelarAgregarProductoVenta();
+    void incrementarProductoEnVenta(VentaLocal*, DtProductoCantidad);
     void confirmarAgregarProductoVenta();
+    bool hayEsteProducotenEnEstaVenta(VentaLocal*, string);
 };
 
 #endif //CONTROLADORAGREGARPRODUCTO

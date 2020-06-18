@@ -21,6 +21,7 @@ public:
     Venta* getVenta(string);
     void removerVenta(Venta*);
     bool agregarVenta(Venta*);
-};
+
+    };
 
 #endif //MANEJADORVENTA

@@ -44,6 +44,7 @@ void procesarProductoComun(string, string);
 void procesarProductoMenu(string, string);
 
 //OPERACIONES PRINCIPALES
+/*
 void altaProducto() {
 	string codigo, descripcion, confirma;
 	bool finalizar, finalizar2;
@@ -115,6 +116,7 @@ void iniciarVenta() {
 	cout << "===============I N I C I A R   V E N T A=============" << endl;
 	cout << "_____________________________________________________" << endl;
 }
+*/
 
 void agregarProductoAVenta() {
 	system("clear");
@@ -145,7 +147,23 @@ void agregarProductoAVenta() {
                 salir=true;
             }
         }else{
-                cout<< "aca operamos para agregar producto" << endl;
+                int prod=0;
+                int seleccion;
+                cout<< "Seleccione el producto que desea agregar \n\n \t\t 1.Producto Comun \n\t\t 2.Producto Menu" << endl;
+                cout<< ">>>" << endl;
+                cin >> prod;
+                switch (prod){
+                    case 1: list<DtProductoBase*> ProdComunes = iConAlP->listarProductosComunes();
+                    for (list<DtProductoBase*>::iterator it = ProdComunes.begin(); it != ProdComunes.end(); it++){
+                        cout << "\tProducto:  "<< (*it)->getDescripcion();
+                        cout << "\t  Codigo: "<< (*it)->getCodigo();
+                        cout << "\t" << endl;
+
+
+                    }
+                    cout << ">>>" << endl;
+                    cin >> seleccion;
+                }
         }
     }
 }
@@ -157,7 +175,7 @@ void quitarProductoAVenta() {
 	cout << "====Q U I T A R   P R O D U C T O   A   V E N T A====" << endl;
 	cout << "_____________________________________________________" << endl;
 }
-
+/*
 void facturacionDeUnaVenta() {
 	system("clear");
 
@@ -202,7 +220,7 @@ void facturacionDeUnaVenta() {
 
 
 }
-
+*/
 void asignarMozosAMesas() {
 	system("clear");
 
@@ -225,7 +243,7 @@ void asignarMozosAMesas() {
 		cout << endl << e.what() << endl;
 	}
 }
-
+/*
 void bajaProducto() {
 	system("clear");
 
@@ -250,7 +268,7 @@ void bajaProducto() {
 
 		cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
 		cin >> codProd;
-		/*Producto* p = productosActuales->getProducto(codProd);*/
+		Producto* p = productosActuales->getProducto(codProd);
 
 		for (DtProductoBase* dtPB : productosActuales) {
 			if(codProd.compare(dtPB->getCodigo()) == 0) {
@@ -259,21 +277,17 @@ void bajaProducto() {
 				iConBjP->seleccionarProducto(codProd);
 				iConBjP->eliminarProducto();
 				cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-				/*
-				sleep(4);
 
-				sleep(4);
-				*/
+
+
 				system("clear");
 			}
 		}
 		if ((encontro == false)&&(codProd.compare(cero) != 0)) {
 			system("clear");
 			cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-			/*
-			sleep(2);
 
-			sleep(2);*/
+
 			iConBjP->cancelarBajaProducto();
 			bajaProducto();
 		}
@@ -281,6 +295,7 @@ void bajaProducto() {
 			system("clear");
 	}
 }
+ */
 
 void informacionProducto() {
 	system("clear");
@@ -376,20 +391,20 @@ int main(){
 	cin >> opcion;
 	while (opcion != 0) {
 		switch (opcion) {
-			case 1: altaProducto();
-				break;
-			case 2: iniciarVenta();
-				break;
+		//	case 1: altaProducto();
+		//		break;
+			//case 2: iniciarVenta();
+			//	break;
 			case 3: agregarProductoAVenta();
 				break;
 			case 4: quitarProductoAVenta();
 				break;
-			case 5: facturacionDeUnaVenta();
-				break;
+		//	case 5: facturacionDeUnaVenta();
+		//		break;
 			case 6: asignarMozosAMesas();
 				break;
-			case 7: bajaProducto();
-				break;
+		//	case 7: bajaProducto();
+		//		break;
 			case 8: informacionProducto();
 				break;
 			case 9: cargarDatosPrueba();

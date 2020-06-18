@@ -4,6 +4,7 @@
 #include <list>
 #include "../DataTypes/DtProductoBase.h"
 #include "../DataTypes/DtProductoCantidad.h"
+#include "../Objetos/VentaLocal.h"
 
 class IControladorAgregarProducto {
 public:
@@ -12,6 +13,9 @@ public:
     //virtual list<DtProductoBase*> listarProductos() = 0;
     virtual void cancelarAgregarProductoVenta() = 0;
     virtual void confirmarAgregarProductoVenta() = 0;
+    virtual void incrementarProductoEnVenta(VentaLocal*, DtProductoCantidad)=0;
+    virtual bool hayEsteProducotenEnEstaVenta(VentaLocal*, string)=0;
+
 };
 
 #endif //ICONTROLADORAGREGARPRODUCTO

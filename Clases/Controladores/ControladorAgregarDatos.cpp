@@ -9,10 +9,12 @@
 #include "../DataTypes/DtFactura.h"
 #include "../DataTypes/DtFecha.h"
 #include "../DataTypes/DtProductoFactura.h"
-
 #include "ControladorAgregarDatos.h"
 #include "ControladorAgregarDatos.h"
+#include <string.h>
 #include <list>
+
+using namespace std;
 
 void ControladorAgregarDatos::cargarDatos(){
     //empleados
@@ -35,7 +37,7 @@ void ControladorAgregarDatos::cargarDatos(){
     //Producto
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     Producto* p= new Comun("P01", "Pollo", 25);
-    Producto* p2= new Comun("P02", "Lechuga y tomates", 13);
+    Producto* p2= new Comun("P02", "Lechuga", 13);
     Producto* p3= new Comun("P03", "Pan ", 19);
     Producto* p4= new Menu("M01", "Chiivito", 105, 1);
     Producto* p5= new Menu("M02", "Sandwich Palta, Lechuga y tomates", 133, 1);
@@ -64,6 +66,9 @@ void ControladorAgregarDatos::cargarDatos(){
 		mM->agregarMesa(mesa7);
 		mM->agregarMesa(mesa8);
 
+		//VentaLocal
+
+
     //Facturacion
     DtFactura* dtFact;
     DtFechaHora fecha;
@@ -79,10 +84,11 @@ void ControladorAgregarDatos::cargarDatos(){
   dtFact = new DtFactura("V01", fecha.actual(), col_dtPF, 200, 0, 200, 250);
 
 
-/*
-		//asginar mesa a mozo
+
+  //asginar mesa a mozo
 		mesa1->setVentaLocal(vL);
 		list<int>mesasLibres = m2->mesasAsignadasSinVenta();
 		m2->asignarMesas(mesasLibres,vL);
-*/
-}
+
+
+  }

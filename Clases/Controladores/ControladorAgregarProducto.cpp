@@ -1,5 +1,6 @@
 #include "../Manejadores/ManejadorMesa.h"
 #include "../Manejadores/ManejadorProducto.h"
+#include "../Manejadores/ManejadorVenta.h"
 #include "ControladorAgregarProducto.h"
 
 //Getters & Setters
@@ -40,3 +41,13 @@ void ControladorAgregarProducto::confirmarAgregarProductoVenta() {
 	Mesa* me = mM->getMesa(this->getMesa());
 	me->agregarProducto(this->getProductoVenta());
 }
+
+void ControladorAgregarProducto::incrementarProductoEnVenta(VentaLocal* VL, DtProductoCantidad DtPc){
+    this->incrementarProductoEnVenta(VL, DtPc);
+}
+
+bool ControladorAgregarProducto::hayEsteProducotenEnEstaVenta(VentaLocal* VL, string codigo){
+    ManejadorVenta* mV= ManejadorVenta::getInstancia();
+    return VL->tieneElProducto(codigo);
+}
+
