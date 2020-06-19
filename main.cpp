@@ -114,6 +114,7 @@ void iniciarVenta() {
 	cout << "_____________________________________________________" << endl;
 	cout << "===============I N I C I A R   V E N T A=============" << endl;
 	cout << "_____________________________________________________" << endl;
+
 }
 
 void agregarProductoAVenta() {
@@ -183,7 +184,7 @@ void agregarProductoAVenta() {
                                 exitElegirProd=false;
                                 exitAgregar=false;
                             }
-                            else 
+                            else
 								break;
                         }
                         case 2: {
@@ -215,7 +216,7 @@ void agregarProductoAVenta() {
                                 exitElegirProd=false;
                                 exitAgregar=false;
                             }
-                            else 
+                            else
 								break;
                         }
                     }
@@ -226,11 +227,54 @@ void agregarProductoAVenta() {
 
 void quitarProductoAVenta() {
 	system("clear");
-
 	cout << "_____________________________________________________" << endl;
 	cout << "====Q U I T A R   P R O D U C T O   A   V E N T A====" << endl;
 	cout << "_____________________________________________________" << endl;
+
+	int mesaElegida=0;
+	string codigoProductoEliminar;
+	int cantidadProductoEliminar;
+	string confirmacion;
+	string quitar="s";
+
+	cout << "Ingrese la mesa a la cual quitar productos: " << endl;
+	cin >> mesaElegida;
+	list<DtProducto*> productosVenta = iConQtP->listarProductos(mesaElegida);
+	for (list<DtProducto*>::iterator it = productosVenta.begin(); it != productosVenta.end(); it++)	{
+			cout << "" << (*it)->getDescripcion();
+			cout << "\t\t\t" << (*it)->getCodigo();
+			cout << "\t" << endl;
+	}
+
+	while(quitar=="S" || quitar=="s"){
+		cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
+		cin >> codigoProductoEliminar;
+		cout << "Ingrese la cantidad de producto que desea eliminar: " << endl;
+		cin >> cantidadProductoEliminar;
+
+		DtProductoCantidad productoEliminar = DtProductoCantidad (codigoProductoEliminar, cantidadProductoEliminar);
+		iConQtP->seleccionarProductoEliminar(productoEliminar);
+
+		cout << "Desea confirmar la quita del producto de la venta?: S/N para continuar " << endl;
+		cin >> confirmacion;
+
+
+		if(confirmacion=="S" || confirmacion=="s"){
+					iConQtP->confirmarQuitarProducto();
+					cout << "Se quito un nuevo producto a la venta"<< endl;
+			}else{
+					iConQtP->cancelarQuitarProducto();
+					cout << "Ha cancelado la quita "<< endl;
+			}
+
+			cout << "Desea quitar otro producto?: S/N para continuar " << endl;
+			cin >> quitar;
+
+		}
+
 }
+
+
 
 void facturacionDeUnaVenta() {
 	system("clear");
