@@ -54,6 +54,17 @@ list<DtProductoBase*> ControladorAltaProducto::listarProductosComunes() {
 	}
 	return dtproductos;
 }
+
+list<DtProductoBase*> ControladorAltaProducto::listarProductoMenu(){
+    ManejadorProducto* mP = ManejadorProducto::getInstancia();
+    list<DtProductoBase*> dtproductos;
+    for(Producto* p: mP->getProductos()){
+        if(p->getTipoProducto() == menu)
+            dtproductos.push_back(p->getDtProductoBase());
+    }
+    return dtproductos;
+
+}
 void ControladorAltaProducto::datosProductoComun(string cod, string desc , float precio) {
 	this->setCodComun(cod);
 	this->setDescComun(desc);

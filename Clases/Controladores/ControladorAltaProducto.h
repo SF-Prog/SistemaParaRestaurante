@@ -38,6 +38,7 @@ public:
     void agregarAlProductoMenu(DtProductoCantidad*);
     void cancelarProductoMenu();
     void confirmarProductoMenu();
+    list<DtProductoBase*> listarProductoMenu();
 };
 
 #endif //CONTROLADORALTAPRODUCTO

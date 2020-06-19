@@ -134,7 +134,7 @@ void agregarProductoAVenta() {
             cout << "\tMesa Nro.: " << *it;
             cout << "\t" << endl;
         }
-        cout << "Seleccione Mesa: " << endl;
+        cout << "\nSeleccione Mesa: " << endl;
         int mesaSeleccionada=0;
         cin >> mesaSeleccionada;
         tieneVentaLocal=iConFuA->estaMesaTieneVenta(mesaSeleccionada);
@@ -164,10 +164,10 @@ void agregarProductoAVenta() {
                                 cout << "\t\t\t" << (*it)->getCodigo();
                                 cout << "\t" << endl;
                             }
-                            cout << "Ingrese el codigo: " << endl;
+                            cout << "\nIngrese el codigo: " << endl;
                             cin >> seleccion;
                             iConAgP->seleccionarMesa(mesaSeleccionada);
-                            cout << "Ingrese la cantidad: " << endl;
+                            cout << "\nIngrese la cantidad: " << endl;
                             cin >> cantSeleccion;
                             VentaLocal* v= iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);     //obtengo id de la ventalLocal de la mesa que selecciono
                             DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
@@ -197,10 +197,10 @@ void agregarProductoAVenta() {
                                 cout << "\t\t\t" << (*it)->getCodigo();
                                 cout << "\t" << endl;
                             }
-                            cout << "Ingrese el codigo: " << endl;
+                            cout << "\nIngrese el codigo: " << endl;
                             cin >> seleccion;
                             iConAgP->seleccionarMesa(mesaSeleccionada);
-                            cout << "Ingrese la cantidad: " << endl;
+                            cout << "\nIngrese la cantidad: " << endl;
                             cin >> cantSeleccion;
                             VentaLocal* v= iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);     //obtengo id de la ventalLocal de la mesa que selecciono
                             DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
@@ -211,7 +211,7 @@ void agregarProductoAVenta() {
                                 iConAgP->confirmarAgregarProductoVenta();
                                 cout << "Se agrego un nuevo producto a la venta"<< endl;
                             }
-                            cout << "Desea agregar otro producto? \n 1.S 2.N" <<endl;
+                            cout << "\n\nDesea agregar otro producto? \n 1.S 2.N" <<endl;
                             int  continuar;
                             cin >> continuar;
                             if(continuar == 2 ){

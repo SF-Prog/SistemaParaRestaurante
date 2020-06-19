@@ -15,6 +15,7 @@ public:
     virtual void agregarAlProductoMenu(DtProductoCantidad*) = 0;
     virtual void cancelarProductoMenu() = 0;
     virtual void confirmarProductoMenu() = 0;
+    virtual list<DtProductoBase*> listarProductoMenu()= 0;
 };
 
 #endif //ICONTROLADORALTAPRODUCTO

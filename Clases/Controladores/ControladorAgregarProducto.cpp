@@ -33,6 +33,8 @@ list<DtProductoBase*> ControladorAgregarProducto::listarProductos() {
 	for (Producto* p : mP->getProductos())
 		dtproductos.push_back(p->getDtProductoBase());
 	return dtproductos;
+
+
 }
 void ControladorAgregarProducto::cancelarAgregarProductoVenta() {
 }
