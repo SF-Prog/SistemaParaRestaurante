@@ -76,8 +76,10 @@ void ControladorAltaProducto::confirmarProductoComun() {
 	mP->agregarProducto(c);
 }
 void ControladorAltaProducto::datosProductoMenu(string cod, string desc) {
+	list<DtProductoCantidad*> lPC;
 	this->setCodMenu(cod);
 	this->setDescMenu(desc);
+	this->setProductosComun(lPC);
 }
 void ControladorAltaProducto::agregarAlProductoMenu(DtProductoCantidad* pc) {
 	this->productosComun.push_back(pc);

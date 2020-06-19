@@ -1,5 +1,5 @@
+#include <unistd.h>
 #include "Clases/Fabrica.h"
-#include <unistd.h> //Para el sleep
 
 //FABRICA
 Fabrica* fabrica;
@@ -44,7 +44,6 @@ void procesarProductoComun(string, string);
 void procesarProductoMenu(string, string);
 
 //OPERACIONES PRINCIPALES
-
 void altaProducto() {
 	string codigo, descripcion, confirma;
 	bool finalizar, finalizar2;
@@ -241,7 +240,6 @@ void quitarProductoAVenta() {
 	cout << "Ingrese la mesa a la cual quitar productos: " << endl;
 	cin >> mesaElegida;
 	if((1 <= mesaElegida)&& (mesaElegida <= listaMesas.size())){
-		std::cout << "AAAAAA"<< listaMesas.size() << '\n';
 		Mesa* mes = mM->getMesa(mesaElegida);
 		list<DtProducto*> productosVenta;
 		VentaLocal* vloc = mes->getVentaLocal();
@@ -290,8 +288,6 @@ void quitarProductoAVenta() {
 			system("clear");
 	}
 }
-
-
 
 void facturacionDeUnaVenta() {
 	system("clear");
@@ -446,7 +442,8 @@ void procesarProductoComun(string codigo, string descripcion) {
 	if (confirma == "y" || confirma == "Y") {
 		iConAlP->confirmarProductoComun();
 		cout << "Producto dado de alta" << endl;
-	} else {
+	}
+	else {
 		iConAlP->cancelarProductoComun();
 		if (confirma != "n" && confirma != "N")
 			cout << "Opcion invalida. ";
@@ -458,8 +455,8 @@ void procesarProductoMenu(string codigo, string descripcion) {
 	iConAlP->datosProductoMenu(codigo, descripcion);
 
 	string codComun, confirma;
+	bool finalizar = false;
 	int cantidad;
-	bool finalizar;
 
 	list<DtProductoBase*> lPC = iConAlP->listarProductosComunes();
 	cout << endl << "ELIJA LOS PRODUCTOS DEL MENU:" << endl << endl;
@@ -472,15 +469,15 @@ void procesarProductoMenu(string codigo, string descripcion) {
 		cout << endl << "CODIGO: ";
 		cin >> codComun;
 
-		if (iConFuA->existeProducto(codComun)) {
+		if (iConFuA->existeProducto(codComun) && iConFuA->tipoProducto(codComun) == comun) {
 			bool fueAgregado = false;
 			list<DtProductoCantidad*> lPC = iConAlP->getProductosComun();
-			for (list<DtProductoCantidad*>::iterator it = lPC.begin(); it != lPC.end(); ++it) {
-				if ((*it)->getCodigo() == codComun) {
+			list<DtProductoCantidad*>::iterator it = lPC.begin();
+			while (!fueAgregado && it != lPC.end()) {
+				if ((*it)->getCodigo() == codComun)
 					fueAgregado = true;
-				}
+				++it;
 			}
-
 			if (fueAgregado)
 				cout << "El producto ya se encuentra en el menu." << endl;
 			else {
@@ -500,11 +497,13 @@ void procesarProductoMenu(string codigo, string descripcion) {
 						if (confirma != "n" && confirma != "N")
 							throw invalid_argument("\nError! Opcion invalida. Alta de menu cancelada.");
 					}
-				} else
+				}
+				else
 					finalizar = true;
 			}
-		} else
-			cout << "El producto no existe en el sistema." << endl;
+		}
+		else
+			cout << "El producto seleccionado no es valido." << endl;
 	} while (!finalizar);
 
 	cout << endl << "¿Desea confirmar el menu? (y/n): ";
@@ -512,7 +511,8 @@ void procesarProductoMenu(string codigo, string descripcion) {
 	if (confirma == "y" || confirma == "Y") {
 		iConAlP->confirmarProductoMenu();
 		cout << "Menu dado de alta" << endl;
-	} else {
+	}
+	else {
 		iConAlP->cancelarProductoMenu();
 		if (confirma == "n" || confirma == "N")
 			cout << "El alta de menu fue cancelada" << endl;

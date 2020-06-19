@@ -46,11 +46,12 @@ void Menu::incrementarCantidadComunes() {
 void Menu::agregarComunes(list<DtProductoCantidad*> productosComun) {
 	ProductoMenu* pm;
 	DtProductoCantidad* pc;
-	for (DtProductoCantidad* pc : productosComun)
+	for (DtProductoCantidad* pc : productosComun) {
 		pm = new ProductoMenu(pc->getCantidad());
-	pm->asignarComun(pc->getCodigo());
-	this->getProductosMenu().push_back(pm);
-	this->incrementarCantidadComunes();
+		pm->asignarComun(pc->getCodigo());
+		this->getProductosMenu().push_back(pm);
+		this->incrementarCantidadComunes();
+	}
 }
 void Menu::aplicarDescuento() {
 	this->setPrecio(this->getPrecio() * 0.90);
