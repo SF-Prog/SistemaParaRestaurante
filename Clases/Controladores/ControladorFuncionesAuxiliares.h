@@ -6,11 +6,10 @@
 
 class ControladorFuncionesAuxiliares : public IControladorFuncionesAuxiliares {
 public:
-    void altaProducto(string, string, float);
     bool estaMesaTieneVenta(int);
     bool existeProducto(string);
     VentaLocal* obtenerCodigoDeVenta(int);
-
+    TipoProducto tipoProducto(string);
 };
 
 #endif //CONTROLADORFUNCIONESAUXILIARES
