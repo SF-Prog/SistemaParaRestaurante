@@ -8,12 +8,12 @@ Fabrica* fabrica;
 IControladorAgregarDatos* iConAgD;
 IControladorAgregarProducto* iConAgP;
 IControladorAltaProducto* iConAlP;
+IControladorAsignarMesasAMozos* iConAsMM;
 IControladorBajaProducto* iConBjP;
 IControladorFacturacion* iConFac;
 IControladorFuncionesAuxiliares* iConFuA;
 IControladorIniciarVenta* iConInV;
 IControladorQuitarProducto* iConQtP;
-IControladorAsignarMesasAMozos* iConAsMM;
 
 //PROPIEDADES
 bool primeraVezAsignacion = true;
@@ -44,7 +44,7 @@ void procesarProductoComun(string, string);
 void procesarProductoMenu(string, string);
 
 //OPERACIONES PRINCIPALES
-/*
+
 void altaProducto() {
 	string codigo, descripcion, confirma;
 	bool finalizar, finalizar2;
@@ -64,7 +64,7 @@ void altaProducto() {
 			if (iConFuA->existeProducto(codigo))
 				throw invalid_argument("ERROR! El producto ya existe en el sistema.");
 
-			cout << endl << "DESCRIPCION: ";
+			cout << "DESCRIPCION: ";
 			cin >> descripcion;
 
 			list<DtProductoBase*> lComunes = iConAlP->listarProductosComunes();
@@ -76,9 +76,9 @@ void altaProducto() {
 
 				int tipoProducto;
 				cin >> tipoProducto;
-				if (tipoProducto < 1 || tipoProducto > 2) {
+				if (tipoProducto < 1 || tipoProducto > 2)
 					throw invalid_argument("\nERROR! opcion invalida.");
-				}else {
+				else {
 					switch (tipoProducto) {
 						case 1: {
 							procesarProductoComun(codigo, descripcion);
@@ -93,18 +93,17 @@ void altaProducto() {
 			} else
 				procesarProductoComun(codigo, descripcion);
 
-			cout << endl << "¿Desea continuar agregando pedidos? (y/n): ";
+			cout << endl << "¿Desea continuar agregando productos? (y/n): ";
 			cin >> confirma;
-			if (confirma == "y" || confirma == "Y"){
+			if (confirma == "y" || confirma == "Y")
 				finalizar = false;
-			}else {
+			else {
 				finalizar = true;
 				if (confirma != "n" && confirma != "N")
-					throw invalid_argument("\nERROR! opcion invalida.");
+					throw invalid_argument("ERROR! opcion invalida.");
 			}
 		} while (!finalizar);
-	}
-	catch (exception& e) {
+	} catch (exception& e) {
 		cout << endl << e.what() << endl;
 	}
 }
@@ -116,7 +115,6 @@ void iniciarVenta() {
 	cout << "===============I N I C I A R   V E N T A=============" << endl;
 	cout << "_____________________________________________________" << endl;
 }
-*/
 
 void agregarProductoAVenta() {
 	system("clear");
@@ -184,13 +182,12 @@ void agregarProductoAVenta() {
                             if(continuar == 2 ){
                                 exitElegirProd=false;
                                 exitAgregar=false;
-
                             }
-                                else break;
-
+                            else 
+								break;
                         }
                         case 2: {
-                            list<DtProductoBase*> prodMenu = iConAlP->listarProductoMenu();
+                            list<DtProductoBase*> prodMenu = iConAlP->listarProductosMenu();
                             cout << "Producto\t\tCodigo\t" <<endl;
                             for(list<DtProductoBase*>::iterator it =prodMenu.begin(); it != prodMenu.end(); it++){
                                 cout << ""<< (*it)->getDescripcion();
@@ -217,10 +214,9 @@ void agregarProductoAVenta() {
                             if(continuar == 2 ){
                                 exitElegirProd=false;
                                 exitAgregar=false;
-
                             }
-                            else break;
-
+                            else 
+								break;
                         }
                     }
             }
@@ -235,7 +231,7 @@ void quitarProductoAVenta() {
 	cout << "====Q U I T A R   P R O D U C T O   A   V E N T A====" << endl;
 	cout << "_____________________________________________________" << endl;
 }
-/*
+
 void facturacionDeUnaVenta() {
 	system("clear");
 
@@ -275,12 +271,8 @@ void facturacionDeUnaVenta() {
 	}else{
 		cout << "\n no encontro ";
 	}
-
-
-
-
 }
-*/
+
 void asignarMozosAMesas() {
 	system("clear");
 
@@ -303,7 +295,7 @@ void asignarMozosAMesas() {
 		cout << endl << e.what() << endl;
 	}
 }
-/*
+
 void bajaProducto() {
 	system("clear");
 
@@ -319,7 +311,6 @@ void bajaProducto() {
 	if (productosActuales.empty()) {
 		system("clear");
 		cout<< "          -No hay Productos en el Sistema-" << endl;
-		//sleep(2);
 		system("clear");
 	} else {
 		cout<< "Lista de productos actualizada: " << endl;
@@ -328,17 +319,14 @@ void bajaProducto() {
 
 		cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
 		cin >> codProd;
-		Producto* p = productosActuales->getProducto(codProd);
 
 		for (DtProductoBase* dtPB : productosActuales) {
-			if(codProd.compare(dtPB->getCodigo()) == 0) {
+			if (codProd.compare(dtPB->getCodigo()) == 0) {
 				encontro = true;
 				system("clear");
 				iConBjP->seleccionarProducto(codProd);
 				iConBjP->eliminarProducto();
 				cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-
-
 
 				system("clear");
 			}
@@ -347,7 +335,6 @@ void bajaProducto() {
 			system("clear");
 			cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
 
-
 			iConBjP->cancelarBajaProducto();
 			bajaProducto();
 		}
@@ -355,7 +342,6 @@ void bajaProducto() {
 			system("clear");
 	}
 }
- */
 
 void informacionProducto() {
 	system("clear");
@@ -389,7 +375,7 @@ void procesarProductoComun(string codigo, string descripcion) {
 	string confirma;
 	float precio;
 
-	cout << endl << "PRECIO: ";
+	cout << "PRECIO: ";
 	cin >> precio;
 
 	iConAlP->datosProductoComun(codigo, descripcion, precio);
@@ -399,17 +385,79 @@ void procesarProductoComun(string codigo, string descripcion) {
 	if (confirma == "y" || confirma == "Y") {
 		iConAlP->confirmarProductoComun();
 		cout << "Producto dado de alta" << endl;
-	}
-	else {
+	} else {
 		iConAlP->cancelarProductoComun();
-		if (confirma == "n" || confirma == "N")
-			cout << "El alta de producto fue cancelada" << endl;
-		else
-			cout << "Opcion invalida. Alta de producto cancelada" << endl;
+		if (confirma != "n" && confirma != "N")
+			cout << "Opcion invalida. ";
+		cout << "Alta de producto cancelada" << endl;
 	}
 }
 
 void procesarProductoMenu(string codigo, string descripcion) {
+	iConAlP->datosProductoMenu(codigo, descripcion);
+
+	string codComun, confirma;
+	int cantidad;
+	bool finalizar;
+
+	list<DtProductoBase*> lPC = iConAlP->listarProductosComunes();
+	cout << endl << "ELIJA LOS PRODUCTOS DEL MENU:" << endl << endl;
+	cout << "CODIGO\t\tPRODUCTO" << endl;
+	for (list<DtProductoBase*>::iterator it = lPC.begin(); it != lPC.end(); it++) {
+		cout << "" << (*it)->getCodigo();
+		cout << "\t\t" << (*it)->getDescripcion() << endl;
+	}
+	do {
+		cout << endl << "CODIGO: ";
+		cin >> codComun;
+
+		if (iConFuA->existeProducto(codComun)) {
+			bool fueAgregado = false;
+			list<DtProductoCantidad*> lPC = iConAlP->getProductosComun();
+			for (list<DtProductoCantidad*>::iterator it = lPC.begin(); it != lPC.end(); ++it) {
+				if ((*it)->getCodigo() == codComun) {
+					fueAgregado = true;
+				}
+			}
+
+			if (fueAgregado)
+				cout << "El producto ya se encuentra en el menu." << endl;
+			else {
+				cout << "CANTIDAD: ";
+				cin >> cantidad;
+
+				DtProductoCantidad* dtPC = new DtProductoCantidad(codComun, cantidad);
+				iConAlP->agregarAlProductoMenu(dtPC);
+
+				if (iConAlP->getProductosComun().size() < iConAlP->listarProductosComunes().size()) {
+					cout << endl << "¿Desea continuar agregando productos al menu? (y/n): ";
+					cin >> confirma;
+					if (confirma == "y" || confirma == "Y")
+						finalizar = false;
+					else {
+						finalizar = true;
+						if (confirma != "n" && confirma != "N")
+							throw invalid_argument("\nError! Opcion invalida. Alta de menu cancelada.");
+					}
+				} else
+					finalizar = true;
+			}
+		} else
+			cout << "El producto no existe en el sistema." << endl;
+	} while (!finalizar);
+
+	cout << endl << "¿Desea confirmar el menu? (y/n): ";
+	cin >> confirma;
+	if (confirma == "y" || confirma == "Y") {
+		iConAlP->confirmarProductoMenu();
+		cout << "Menu dado de alta" << endl;
+	} else {
+		iConAlP->cancelarProductoMenu();
+		if (confirma == "n" || confirma == "N")
+			cout << "El alta de menu fue cancelada" << endl;
+		else
+			cout << "Opcion invalida. Alta de menu cancelada" << endl;
+	}
 }
 
 //MENU
@@ -451,20 +499,20 @@ int main(){
 	cin >> opcion;
 	while (opcion != 0) {
 		switch (opcion) {
-		//	case 1: altaProducto();
-		//		break;
-			//case 2: iniciarVenta();
-			//	break;
+			case 1: altaProducto();
+				break;
+			case 2: iniciarVenta();
+				break;
 			case 3: agregarProductoAVenta();
 				break;
 			case 4: quitarProductoAVenta();
 				break;
-		//	case 5: facturacionDeUnaVenta();
-		//		break;
+			case 5: facturacionDeUnaVenta();
+				break;
 			case 6: asignarMozosAMesas();
 				break;
-		//	case 7: bajaProducto();
-		//		break;
+			case 7: bajaProducto();
+				break;
 			case 8: informacionProducto();
 				break;
 			case 9: cargarDatosPrueba();

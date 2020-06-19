@@ -34,4 +34,3 @@ void ManejadorVenta::removerVenta(Venta* v) {
 bool ManejadorVenta::agregarVenta(Venta* v) {
     this->ventas.insert(pair<string, Venta*>(v->getCodigo(), v));
 }
-

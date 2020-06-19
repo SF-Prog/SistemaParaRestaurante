@@ -31,6 +31,7 @@ public:
 
     //Metodos
     list<DtProductoBase*> listarProductosComunes();
+    list<DtProductoBase*> listarProductosMenu();
     void datosProductoComun(string, string, float);
     void cancelarProductoComun();
     void confirmarProductoComun();
@@ -38,7 +39,6 @@ public:
     void agregarAlProductoMenu(DtProductoCantidad*);
     void cancelarProductoMenu();
     void confirmarProductoMenu();
-    list<DtProductoBase*> listarProductoMenu();
 };
 
 #endif //CONTROLADORALTAPRODUCTO
