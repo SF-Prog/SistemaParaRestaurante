@@ -11,6 +11,8 @@ public:
     bool existeProducto(string);
     VentaLocal* obtenerCodigoDeVenta(int);
     TipoProducto tipoProducto(string);
+    Mesa* obtenerMesa(int);
+    bool existeMesa(int);
 };
 
 #endif //CONTROLADORFUNCIONESAUXILIARES

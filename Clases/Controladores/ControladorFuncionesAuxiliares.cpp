@@ -28,3 +28,13 @@ TipoProducto ControladorFuncionesAuxiliares::tipoProducto(string codigo) {
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
     return mP->getProducto(codigo)->getTipoProducto();
 }
+Mesa* ControladorFuncionesAuxiliares::obtenerMesa(int codigo) {
+  ManejadorMesa* mM=ManejadorMesa::getInstancia();
+  Mesa *me = mM->getMesa(codigo);
+    return me;
+}
+bool ControladorFuncionesAuxiliares::existeMesa(int codigo) {
+    ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    return mM->existeMesa(codigo);
+}
+

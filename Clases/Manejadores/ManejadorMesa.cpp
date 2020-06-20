@@ -32,3 +32,7 @@ void ManejadorMesa::removerMesa(Mesa* m) {
 void ManejadorMesa::agregarMesa(Mesa* m) {
     this->mesas.insert(pair<int, Mesa*>(m->getNumero(), m));
 }
+bool ManejadorMesa::existeMesa(int cod) {
+    map<int, Mesa*>::iterator it = this->mesas.find(cod);
+    return (it != this->mesas.end());
+} 

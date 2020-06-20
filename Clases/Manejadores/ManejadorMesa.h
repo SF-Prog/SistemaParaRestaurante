@@ -21,6 +21,7 @@ public:
     Mesa* getMesa(int);
     void removerMesa(Mesa*);
     void agregarMesa(Mesa*);
+    bool existeMesa(int);
 };
 
 #endif //MANEJADORMESA

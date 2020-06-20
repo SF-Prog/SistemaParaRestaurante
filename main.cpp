@@ -330,25 +330,28 @@ void quitarProductoAVenta() {
     int cantidadProductoEliminar;
     string confirmacion;
     string quitar="s";
-    ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    list<Mesa*> listaMesas= mM->getMesas();
+
+
     cout << "Ingrese la mesa a la cual quitar productos: " << endl;
     cin >> mesaElegida;
-    if((1 <= mesaElegida)&& (mesaElegida <= listaMesas.size())){
-        Mesa* mes = mM->getMesa(mesaElegida);
+
+    if(iConFuA->existeMesa(mesaElegida)){
+        Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
         list<DtProducto*> productosVenta;
-        VentaLocal* vloc = mes->getVentaLocal();
+        VentaLocal* vloc = mesa->getVentaLocal();
+
         if(vloc == NULL){
-            std::cout << "\t\t\tLa mesa "<< mes->getNumero() << " NO tiene VentaLocal asignada." << '\n';
+            std::cout << "\t\t\tLa mesa "<< mesa->getNumero() << " NO tiene VentaLocal asignada." << '\n';
             sleep(2);
             system("clear");
         }else{
             productosVenta = iConQtP->listarProductos(mesaElegida);
             while(quitar=="S" || quitar=="s"){
+
                 for (list<DtProducto*>::iterator it = productosVenta.begin(); it != productosVenta.end(); it++)	{
-                    cout << "" << (*it)->getDescripcion();
-                    cout << "\t\t\t" << (*it)->getCodigo();
-                    cout << "\t" << endl;
+
+                    DTPorductoBase* productoBase = dynamic_cast<DtProductoBase>(*it)
+                    cout << productoBase << endl;
                 }
                 cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
                 cin >> codigoProductoEliminar;
@@ -363,7 +366,7 @@ void quitarProductoAVenta() {
 
                 if(confirmacion=="S" || confirmacion=="s"){
                     iConQtP->confirmarQuitarProducto();
-                    cout << "Se quito un DtProductoCantidad a la venta"<< endl;
+                    cout << "Se quito un producto de la mesa a la venta"<< endl;
                 }else{
                     iConQtP->cancelarQuitarProducto();
                     cout << "Ha cancelado la quita "<< endl;
