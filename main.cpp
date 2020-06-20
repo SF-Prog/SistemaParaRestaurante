@@ -339,6 +339,7 @@ void quitarProductoAVenta() {
         Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
         list<DtProducto*> productosVenta;
         VentaLocal* vloc = mesa->getVentaLocal();
+        
 
         if(vloc == NULL){
             std::cout << "\t\t\tLa mesa "<< mesa->getNumero() << " NO tiene VentaLocal asignada." << '\n';
@@ -350,7 +351,7 @@ void quitarProductoAVenta() {
 
                 for (list<DtProducto*>::iterator it = productosVenta.begin(); it != productosVenta.end(); it++)	{
 
-                    DTPorductoBase* productoBase = dynamic_cast<DtProductoBase>(*it)
+                    DtProductoBase* productoBase = dynamic_cast<DtProductoBase*>(*it);
                     cout << productoBase << endl;
                 }
                 cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
