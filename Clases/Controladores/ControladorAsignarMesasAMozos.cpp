@@ -18,11 +18,10 @@ list<DtAsignacion*> ControladorAsignarMesasAMozos::asignarMozosMesas() {
 	ManejadorEmpleado* me = ManejadorEmpleado::getInstancia();
 	list<Empleado*> empleadosActuales = me->getEmpleados();
 	list<DtAsignacion*> listaDtA;
-	//Explotando ACA
 
 	float MeMo = (mesasActuales.size() / empleadosActuales.size());
 	float resto = (mesasActuales.size() % empleadosActuales.size());
-	int ultimaMesaAsignada = 1;// Numero de Mesas desde el 1 al 8
+	int ultimaMesaAsignada = 1;
 
 	for (Empleado* e : empleadosActuales) {
 		Mozo* m = dynamic_cast<Mozo*>(e);
@@ -32,7 +31,6 @@ list<DtAsignacion*> ControladorAsignarMesasAMozos::asignarMozosMesas() {
 		dtA->setIdMozoAsignacion(m->getIdEmpleado()); 
 		int pos = ultimaMesaAsignada;
 		for (int i=0 ; i<MeMo ; i++) {
-			/*if(mesa no esta asignada me->tieneVenta){}*/
 			Mesa* ma = mm->getMesa(pos+i);
 			mesasParaMozo.push_back(ma);
 			mesasAsignar.push_back(ma->getNumero());
@@ -49,7 +47,6 @@ list<DtAsignacion*> ControladorAsignarMesasAMozos::asignarMozosMesas() {
 		dtA->setMesasAsignacion(mesasAsignar);
 		listaDtA.push_back(dtA);
 	}
-	//	this->setListaAsignacion(listaDtA);
 
 	return listaDtA;
 }

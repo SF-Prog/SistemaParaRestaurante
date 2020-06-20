@@ -2,12 +2,12 @@
 #include "Controladores/ControladorAgregarDatos.h"
 #include "Controladores/ControladorAgregarProducto.h"
 #include "Controladores/ControladorAltaProducto.h"
+#include "Controladores/ControladorAsignarMesasAMozos.h"
 #include "Controladores/ControladorBajaProducto.h"
 #include "Controladores/ControladorFacturacion.h"
 #include "Controladores/ControladorFuncionesAuxiliares.h"
 #include "Controladores/ControladorIniciarVenta.h"
 #include "Controladores/ControladorQuitarProducto.h"
-#include "Controladores/ControladorAsignarMesasAMozos.h"
 
 //Constructor
 Fabrica::Fabrica() {}
@@ -33,6 +33,9 @@ IControladorAgregarProducto* Fabrica::getIControladorAgregarProducto() {
 IControladorAltaProducto* Fabrica::getIControladorAltaProducto() {
     return new ControladorAltaProducto();
 }
+IControladorAsignarMesasAMozos* Fabrica::getIControladorAsignarMesasAMozos() {
+    return new ControladorAsignarMesasAMozos();
+}
 IControladorBajaProducto* Fabrica::getIControladorBajaProducto() {
     return new ControladorBajaProducto();
 }
@@ -47,7 +50,4 @@ IControladorIniciarVenta* Fabrica::getIControladorIniciarVenta() {
 }
 IControladorFuncionesAuxiliares* Fabrica::getIControladorFuncionesAuxiliares() {
     return new ControladorFuncionesAuxiliares();
-}
-IControladorAsignarMesasAMozos* Fabrica::getIControladorAsignarMesasAMozos() {
-		return new ControladorAsignarMesasAMozos();
 }

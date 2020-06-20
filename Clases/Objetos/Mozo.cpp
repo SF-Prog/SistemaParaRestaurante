@@ -1,4 +1,6 @@
+#include <algorithm>
 #include "../Manejadores/ManejadorMesa.h"
+#include "Mesa.h"
 #include "Mozo.h"
 
 //Constructores
@@ -27,8 +29,11 @@ list<int> Mozo::mesasAsignadasSinVenta() {
 }
 void Mozo::asignarMesas(list<int> mesas, VentaLocal* vl) {
 	ManejadorMesa* mM = ManejadorMesa::getInstancia();
-	for (int me : mesas) {
-		Mesa* m = mM->getMesa(me);
-		m->setVentaLocal(vl);
+	list<Mesa*> lMesas = this->getMesas();
+	for (int mesa : mesas) {
+		Mesa* me = mM->getMesa(mesa);
+		list<Mesa*>::iterator m = find(lMesas.begin(), lMesas.end(), me);
+		if (m != lMesas.end())
+			(*m)->setVentaLocal(vl);
 	}
 }

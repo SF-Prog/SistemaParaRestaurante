@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <unistd.h>
 #include "Clases/Fabrica.h"
 
@@ -114,19 +115,77 @@ void iniciarVenta() {
 	cout << "===============I N I C I A R   V E N T A=============" << endl;
 	cout << "_____________________________________________________" << endl;
 
-	string confirma;
-	bool finalizar;
-	string idMozo;
+	string confirma, idMozo;
+	bool finalizar = false;
+	int mesa;
 
-	cout << endl << "ID MOZO: ";
-	cin >> idMozo;
+	try {
+		cout << endl << "ID MOZO: ";
+		cin >> idMozo;
 
-	if (!iConFuA->existeMozo(idMozo))
-		throw invalid_argument("ERROR! El mozo no existe en el sistema.");
+		if (!iConFuA->existeMozo(idMozo))
+			throw invalid_argument("ERROR! El mozo no existe en el sistema.");
 
-	list<int> lMesas = iConInV->ingresarIDMozo(idMozo);
-	if (lMesas.size() > 0) {
+		list<int> lMesasElegidas;
+		list<int> lMesasSinVentas = iConInV->ingresarIDMozo(idMozo);
+		if (lMesasSinVentas.size() > 0) {
+			cout << endl << "SELECCIONE LAS MESAS SIN VENTAS (de a una):" << endl << endl;
+			for (list<int>::iterator it = lMesasSinVentas.begin(); it != lMesasSinVentas.end(); it++)
+				cout << (*it) << endl;
+			do {
+				cout << endl << "NUMERO: ";
+				cin >> mesa;
 
+				list<int>::iterator it1 = find(lMesasSinVentas.begin(), lMesasSinVentas.end(), mesa);
+				if (it1 == lMesasSinVentas.end())
+					cout << "La mesa seleccionada no es valida." << endl;
+				else {
+					list<int>::iterator it2 = find(lMesasElegidas.begin(), lMesasElegidas.end(), mesa);
+					if (it2 != lMesasElegidas.end())
+						cout << "La mesa ya se encuentra seleccionada." << endl;
+					else
+						lMesasElegidas.push_back(mesa);
+				}
+				if (lMesasElegidas.size() < lMesasSinVentas.size()) {
+					cout << endl << "¿Desea continuar seleccionando mesas? (y/n): ";
+					cin >> confirma;
+					if (confirma != "y" && confirma != "Y") {
+						finalizar = true;
+						if (confirma != "n" && confirma != "N")
+							cout << "Opcion invalida. Seleccion de mesas cancelada" << endl;
+					}
+				} else
+					finalizar = true;
+			} while (!finalizar);
+
+			if (lMesasElegidas.size() > 0) {
+				if (lMesasElegidas.size() == 1)
+					cout << endl << "¿Desea iniciar la venta? (y/n): ";
+				else
+					cout << endl << "¿Desea iniciar las ventas? (y/n): ";
+				cin >> confirma;
+				if (confirma == "y" || confirma == "Y") {
+					iConInV->seleccionarMesas(lMesasElegidas);
+					iConInV->confirmarIniciarVenta();
+					if (lMesasElegidas.size() == 1)
+						cout << "Venta iniciada." << endl;
+					else
+						cout << "Ventas iniciadas." << endl;
+				} else {
+					iConInV->cancelarIniciarVenta();
+					if (confirma != "n" && confirma != "N")
+						cout << "Opcion invalida. ";
+					if (lMesasElegidas.size() == 1)
+						cout << "Venta no iniciada." << endl;
+					else
+						cout << "Ventas no iniciadas." << endl;
+				}
+			} else
+				cout << endl << "No ha seleccionado mesas. No se han iniciado ventas." << endl;
+		} else
+			cout << endl << "El mozo no tiene mesas asignadas sin venta." << endl;
+	} catch (exception& e) {
+		cout << endl << e.what() << endl;
 	}
 }
 
@@ -376,7 +435,7 @@ void bajaProducto() {
 		for (DtProductoBase* dtPB : productosActuales)
 			cout << *dtPB << endl;
 
-		cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :" << endl;
+		cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :";
 		cin >> codProd;
 
 		for (DtProductoBase* dtPB : productosActuales) {
@@ -396,8 +455,7 @@ void bajaProducto() {
 
 			iConBjP->cancelarBajaProducto();
 			bajaProducto();
-		}
-		else if (codProd.compare(cero) == 0)
+		} else if (codProd.compare(cero) == 0)
 			system("clear");
 	}
 }
@@ -444,8 +502,7 @@ void procesarProductoComun(string codigo, string descripcion) {
 	if (confirma == "y" || confirma == "Y") {
 		iConAlP->confirmarProductoComun();
 		cout << "Producto dado de alta" << endl;
-	}
-	else {
+	} else {
 		iConAlP->cancelarProductoComun();
 		if (confirma != "n" && confirma != "N")
 			cout << "Opcion invalida. ";
@@ -460,7 +517,7 @@ void procesarProductoMenu(string codigo, string descripcion) {
 	int cantidad;
 
 	list<DtProductoBase*> lPC = iConAlP->listarProductosComunes();
-	cout << endl << "ELIJA LOS PRODUCTOS DEL MENU:" << endl << endl;
+	cout << endl << "SELECCIONE LOS PRODUCTOS DEL MENU:" << endl << endl;
 	cout << "CODIGO\t\tPRODUCTO" << endl;
 	for (list<DtProductoBase*>::iterator it = lPC.begin(); it != lPC.end(); it++) {
 		cout << "" << (*it)->getCodigo();
@@ -491,19 +548,15 @@ void procesarProductoMenu(string codigo, string descripcion) {
 				if (iConAlP->getProductosComun().size() < iConAlP->listarProductosComunes().size()) {
 					cout << endl << "¿Desea continuar agregando productos al menu? (y/n): ";
 					cin >> confirma;
-					if (confirma == "y" || confirma == "Y")
-						finalizar = false;
-					else {
+					if (confirma != "y" && confirma != "Y") {
 						finalizar = true;
 						if (confirma != "n" && confirma != "N")
-							throw invalid_argument("\nError! Opcion invalida. Alta de menu cancelada.");
+							cout << "Opcion invalida. Seleccion de productos cancelada" << endl;
 					}
-				}
-				else
+				} else
 					finalizar = true;
 			}
-		}
-		else
+		} else
 			cout << "El producto seleccionado no es valido." << endl;
 	} while (!finalizar);
 
@@ -512,13 +565,11 @@ void procesarProductoMenu(string codigo, string descripcion) {
 	if (confirma == "y" || confirma == "Y") {
 		iConAlP->confirmarProductoMenu();
 		cout << "Menu dado de alta" << endl;
-	}
-	else {
+	} else {
 		iConAlP->cancelarProductoMenu();
-		if (confirma == "n" || confirma == "N")
-			cout << "El alta de menu fue cancelada" << endl;
-		else
-			cout << "Opcion invalida. Alta de menu cancelada" << endl;
+		if (confirma != "n" && confirma != "N")
+			cout << "Opcion invalida. ";
+		cout << "Alta de menu cancelada" << endl;
 	}
 }
 

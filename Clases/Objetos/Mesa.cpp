@@ -4,6 +4,7 @@
 Mesa::Mesa() {}
 Mesa::Mesa(int nroMesa) {
     this->numero = nroMesa;
+    this->ventaLocal = NULL;
 }
 
 //Getters & Setters
@@ -25,8 +26,7 @@ Mesa::~Mesa() {};
 
 //Metodos
 bool Mesa::tieneVenta() {
-    VentaLocal* vl = this->getVentaLocal();
-    return vl == NULL;
+    return this->getVentaLocal() != NULL;
 }
 void Mesa::agregarProducto(DtProductoCantidad pc) {
     if (this->getVentaLocal()->tieneElProducto(pc.getCodigo()))

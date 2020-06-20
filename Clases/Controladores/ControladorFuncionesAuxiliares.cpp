@@ -22,7 +22,7 @@ VentaLocal* ControladorFuncionesAuxiliares::obtenerCodigoDeVenta(int idMesa) {
     ManejadorMesa* mM=ManejadorMesa::getInstancia();
     Mesa *me = mM->getMesa(idMesa);
     VentaLocal* v = me->getVentaLocal();
-    return  v;
+    return v;
 }
 TipoProducto ControladorFuncionesAuxiliares::tipoProducto(string codigo) {
     ManejadorProducto* mP = ManejadorProducto::getInstancia();

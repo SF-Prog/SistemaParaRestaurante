@@ -23,7 +23,9 @@ ControladorIniciarVenta::~ControladorIniciarVenta() {}
 
 //Metodos
 list<int> ControladorIniciarVenta::ingresarIDMozo(string idMozo) {
+	list<int> mesas;
 	this->setMozo(idMozo);
+	this->setMesas(mesas);
 	ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
 	Mozo* mo = dynamic_cast<Mozo*>(mE->getEmpleado(this->getMozo()));
 	return mo->mesasAsignadasSinVenta();
@@ -43,11 +45,11 @@ void ControladorIniciarVenta::confirmarIniciarVenta() {
 	mV->agregarVenta(vl);
 }
 
-list <int> ControladorIniciarVenta::listarMesas() {
-    ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    list<Mesa*> mesas = mM->getMesas();
-    list<int> numeroMesa;
-    for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); it++)
-        numeroMesa.push_back((*it)->getNumero());
-    return numeroMesa;
+list<int> ControladorIniciarVenta::listarMesas() {
+	ManejadorMesa* mM = ManejadorMesa::getInstancia();
+	list<Mesa*> mesas = mM->getMesas();
+	list<int> numeroMesa;
+	for (list<Mesa*>::iterator it = mesas.begin(); it != mesas.end(); it++)
+		numeroMesa.push_back((*it)->getNumero());
+	return numeroMesa;
 }

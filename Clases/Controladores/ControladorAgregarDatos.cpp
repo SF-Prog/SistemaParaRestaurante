@@ -73,6 +73,6 @@ void ControladorAgregarDatos::cargarDatos(){
 
 	//Asignar mesas a mozos
 	mesa1->setVentaLocal(vL);
-	list<int>mesasLibres = m2->mesasAsignadasSinVenta();
-	m2->asignarMesas(mesasLibres,vL);
+	list<int> mesasLibres = m2->mesasAsignadasSinVenta();
+	m2->asignarMesas(mesasLibres, vL);
 }
