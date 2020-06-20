@@ -18,17 +18,18 @@ list<DtAsignacion*> ControladorAsignarMesasAMozos::asignarMozosMesas() {
 	ManejadorEmpleado* me = ManejadorEmpleado::getInstancia();
 	list<Empleado*> empleadosActuales = me->getEmpleados();
 	list<DtAsignacion*> listaDtA;
+	Mesa* primerMESA = mesasActuales.front();
 
 	float MeMo = (mesasActuales.size() / empleadosActuales.size());
 	float resto = (mesasActuales.size() % empleadosActuales.size());
-	int ultimaMesaAsignada = 1;
+	int ultimaMesaAsignada = primerMESA->getNumero();
 
 	for (Empleado* e : empleadosActuales) {
 		Mozo* m = dynamic_cast<Mozo*>(e);
 		DtAsignacion* dtA = new DtAsignacion();
 		list<int> mesasAsignar;
 		list<Mesa*> mesasParaMozo;
-		dtA->setIdMozoAsignacion(m->getIdEmpleado()); 
+		dtA->setIdMozoAsignacion(m->getIdEmpleado());
 		int pos = ultimaMesaAsignada;
 		for (int i=0 ; i<MeMo ; i++) {
 			Mesa* ma = mm->getMesa(pos+i);

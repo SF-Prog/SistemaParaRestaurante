@@ -21,6 +21,5 @@ DtFacturaLocal::~DtFacturaLocal() {}
 ostream& operator <<(ostream& salida, const DtFacturaLocal& dtfL) {
     cout << "Mozo: " << dtfL.nombreMozo << endl;
     cout << (DtFactura)dtfL;
-
 	return salida;
 }

@@ -445,9 +445,12 @@ void bajaProducto() {
     cout << "==============B A J A   P R O D U C T O==============" << endl;
     cout << "_____________________________________________________" << endl;
 
+
     bool encontro = false;
+		bool primerVez = true;
     string codProd;
     string cero = "0";
+		string confirmacion;
 
     list<DtProductoBase*> productosActuales = iConBjP->listarProductos() ;
     if (productosActuales.empty()) {
@@ -455,32 +458,49 @@ void bajaProducto() {
         cout<< "          -No hay Productos en el Sistema-" << endl;
         system("clear");
     } else {
+				if(primerVez){
         cout<< "Lista de productos actualizada: " << endl;
         for (DtProductoBase* dtPB : productosActuales)
             cout << *dtPB << endl;
-
+				primerVez = false;
+				}
         cout << "\nINGRESE EL CODIGO DEL PRODUCTO A DAR DE BAJA (0 para volver al menu) :";
         cin >> codProd;
 
         for (DtProductoBase* dtPB : productosActuales) {
             if (codProd.compare(dtPB->getCodigo()) == 0) {
                 encontro = true;
-                system("clear");
                 iConBjP->seleccionarProducto(codProd);
-                iConBjP->eliminarProducto();
-                cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE DADO DE BAJA SATISFACTORIAMENTE." << endl;
-
-                system("clear");
+                cout << "----------DETALLES DEL PRODUCTO----------\n" << "          Descripcion:  "<< dtPB->getDescripcion()<< ".\n"<< "          Codigo:  "<< dtPB->getCodigo() << ".\n          FUE ENCONTRADO EN EL SISTEMA." << endl;
+								sleep(2);
             }
         }
         if ((encontro == false)&&(codProd.compare(cero) != 0)) {
             system("clear");
-            cout<<"\n\nEl codigo ingresado no es correcto, intentelo nuevamente..." << endl;
-
-            iConBjP->cancelarBajaProducto();
-            bajaProducto();
-        } else if (codProd.compare(cero) == 0)
+            cout<<"\n\nEl codigo ingresado no es correcto, Volver al Menu..." << endl;
+						sleep(2);
+        } else if (codProd.compare(cero) == 0){
             system("clear");
+				}else{
+							cout << "Confirmar Baja de Producto "<< codProd <<"(y/n): "<< endl;
+							cin >> confirmacion;
+							if((confirmacion == "y")||(confirmacion == "Y")){
+								cout << "\n\t BAJA PRODUCTO CONFIRMADA " << '\n';
+								iConBjP->eliminarProducto();
+								sleep(1);
+								system("clear");
+							}else if((confirmacion == "n")||(confirmacion == "N")){
+								cout << "\n\t BAJA PRODUCTO CANCELADA " << '\n';
+								iConBjP->cancelarBajaProducto();
+								sleep(1);
+								system("clear");
+							}else{
+								cout << "\n\tOpcion incorrecta. Volver al MENU..." << endl;
+								sleep(2);
+								system("clear");
+							}
+				}
+
     }
 }
 
