@@ -23,6 +23,7 @@ public:
     Empleado* getEmpleado(string);
     void removerEmpleado(Empleado*);
     void agregarEmpleado(Empleado*);
+    bool existeEmpleado(string);
 };
 
 #endif //MANEJADOREMPLEADO

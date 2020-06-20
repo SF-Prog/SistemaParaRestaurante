@@ -6,6 +6,7 @@
 class IControladorFuncionesAuxiliares {
 public:
 	virtual bool estaMesaTieneVenta(int) = 0;
+	virtual bool existeMozo(string) = 0;
 	virtual bool existeProducto(string) = 0;
 	virtual VentaLocal* obtenerCodigoDeVenta(int) = 0;
 	virtual TipoProducto tipoProducto(string) = 0;

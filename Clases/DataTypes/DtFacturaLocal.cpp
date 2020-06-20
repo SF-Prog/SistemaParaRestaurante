@@ -18,17 +18,9 @@ void DtFacturaLocal::setNombreMozo(string nombreMozo) {
 DtFacturaLocal::~DtFacturaLocal() {}
 
 //Metodos
-//Aca crear ostream
 ostream& operator <<(ostream& salida, const DtFacturaLocal& dtfL) {
-  cout << "Mozo: " << dtfL.nombreMozo << endl;
-  cout <<"Codigo de venta:" << dtfL.codVenta << endl;
-  cout <<"Fecha:" << dtfL.fechaEmision << endl;
-  for (DtProductoFactura* dtP : dtfL.productos){
-    cout <<"Descripción: " << dtP->getDescripcion() << "  Precio: " << dtP->getPrecio() << "  Cantidad: " << dtP->getCantidad() << endl;
-  }
-  cout <<"Subtotal Venta:" << dtfL.subtotalVenta << endl;
-  cout <<"Descuento:" << dtfL.descuento << endl;
-  cout <<"Total Venta:" << dtfL.montoTotalVenta << endl;
-  cout <<"Total Venta con IVA" << dtfL.montoTotalVentaConIva << endl;
+    cout << "Mozo: " << dtfL.nombreMozo << endl;
+    cout << (DtFactura)dtfL;
+
 	return salida;
 }

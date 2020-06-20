@@ -24,7 +24,7 @@ public:
     void cancelarAgregarProductoVenta();
     void incrementarProductoEnVenta(VentaLocal*, DtProductoCantidad);
     void confirmarAgregarProductoVenta();
-    bool hayEsteProducotenEnEstaVenta(VentaLocal*, string);
+    bool hayEsteProductoEnEnEstaVenta(VentaLocal*, string);
 };
 
 #endif //CONTROLADORAGREGARPRODUCTO

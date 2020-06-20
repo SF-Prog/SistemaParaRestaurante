@@ -47,8 +47,7 @@ list <int> ControladorIniciarVenta::listarMesas() {
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     list<Mesa*> mesas = mM->getMesas();
     list<int> numeroMesa;
-    for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); it++){
+    for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); it++)
         numeroMesa.push_back((*it)->getNumero());
-    }
     return numeroMesa;
 }

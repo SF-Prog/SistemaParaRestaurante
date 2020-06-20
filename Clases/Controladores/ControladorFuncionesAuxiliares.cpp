@@ -10,6 +10,10 @@ bool ControladorFuncionesAuxiliares::estaMesaTieneVenta(int mesa) {
     bool tiene = M->tieneVenta();
     return tiene;
 }
+bool ControladorFuncionesAuxiliares::existeMozo(string codigo) {
+    ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
+    return mE->existeEmpleado(codigo);
+}
 bool ControladorFuncionesAuxiliares::existeProducto(string codigo) {
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
     return mP->existeProducto(codigo);

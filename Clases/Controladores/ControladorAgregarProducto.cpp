@@ -33,8 +33,6 @@ list<DtProductoBase*> ControladorAgregarProducto::listarProductos() {
 	for (Producto* p : mP->getProductos())
 		dtproductos.push_back(p->getDtProductoBase());
 	return dtproductos;
-
-
 }
 void ControladorAgregarProducto::cancelarAgregarProductoVenta() {
 }
@@ -43,13 +41,10 @@ void ControladorAgregarProducto::confirmarAgregarProductoVenta() {
 	Mesa* me = mM->getMesa(this->getMesa());
 	me->agregarProducto(this->getProductoVenta());
 }
-
-void ControladorAgregarProducto::incrementarProductoEnVenta(VentaLocal* VL, DtProductoCantidad DtPc){
-    this->incrementarProductoEnVenta(VL, DtPc);
+void ControladorAgregarProducto::incrementarProductoEnVenta(VentaLocal* VL, DtProductoCantidad DtPc) {
+	this->incrementarProductoEnVenta(VL, DtPc);
 }
-
-bool ControladorAgregarProducto::hayEsteProducotenEnEstaVenta(VentaLocal* VL, string codigo){
-    ManejadorVenta* mV= ManejadorVenta::getInstancia();
-    return VL->tieneElProducto(codigo);
+bool ControladorAgregarProducto::hayEsteProductoEnEnEstaVenta(VentaLocal* VL, string codigo) {
+	ManejadorVenta* mV= ManejadorVenta::getInstancia();
+	return VL->tieneElProducto(codigo);
 }
-

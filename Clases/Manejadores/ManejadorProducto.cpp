@@ -21,7 +21,6 @@ list<Producto*> ManejadorProducto::getProductos() {
         lProductos.push_back(it->second);
     return lProductos;
 }
-
 Producto* ManejadorProducto::getProducto(string cod) {
     map<string, Producto*>::iterator it = this->productos.find(cod);
     return it->second;

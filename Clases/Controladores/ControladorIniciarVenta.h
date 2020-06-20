@@ -1,7 +1,6 @@
 #ifndef CONTROLADORINICIARVENTA
 #define CONTROLADORINICIARVENTA
 
-#include <string>
 #include "../Interfaces/IControladorIniciarVenta.h"
 
 class ControladorIniciarVenta : public IControladorIniciarVenta {
@@ -11,11 +10,8 @@ private:
 public:
     //Getters & Setters
     string getMozo();
-
     void setMozo(string);
-
     list<int> getMesas();
-
     void setMesas(list<int>);
 
     //Destructor
@@ -23,13 +19,9 @@ public:
 
     //Metodos
     list<int> ingresarIDMozo(string);
-
     list<int> seleccionarMesas(list<int>);
-
     void cancelarIniciarVenta();
-
     void confirmarIniciarVenta();
-
     list<int> listarMesas();
 };
 #endif //CONTROLADORINICIARVENTA

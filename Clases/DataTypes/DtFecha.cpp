@@ -36,11 +36,11 @@ bool operator <(const DtFecha& dtf1, const DtFecha& dtf2) {
 	bool retorno = false;
 	if (dtf1.anio < dtf2.anio)
 		retorno = true;
-	else if(dtf1.anio == dtf2.anio){
+	else if(dtf1.anio == dtf2.anio) {
 		if (dtf1.mes < dtf2.mes)
 			retorno = true;
 		else if(dtf1.mes == dtf2.mes && dtf1.dia < dtf2.dia)
-				retorno = true;
+			retorno = true;
 	}
 	return retorno;
 }

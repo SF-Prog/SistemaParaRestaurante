@@ -1,6 +1,6 @@
-#include "ManejadorVenta.h"
-#include "../Objetos/VentaLocal.h"
 #include "../DataTypes/DtProductoCantidad.h"
+#include "../Objetos/VentaLocal.h"
+#include "ManejadorVenta.h"
 
 //Constructor
 ManejadorVenta::ManejadorVenta() {}

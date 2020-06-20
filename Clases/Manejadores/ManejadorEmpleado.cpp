@@ -32,3 +32,7 @@ void ManejadorEmpleado::removerEmpleado(Empleado* e) {
 void ManejadorEmpleado::agregarEmpleado(Empleado* e) {
     this->empleados.insert(pair<string, Empleado*>(e->getIdEmpleado(), e));
 }
+bool ManejadorEmpleado::existeEmpleado(string cod) {
+    map<string, Empleado*>::iterator it = this->empleados.find(cod);
+    return (it != this->empleados.end());
+}
