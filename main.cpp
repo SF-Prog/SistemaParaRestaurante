@@ -393,6 +393,7 @@ void facturacionDeUnaVenta() {
   bool encontro, finalizar;
 	string confirma;
 
+
 	try {
 			finalizar = false;
 			do {
@@ -408,18 +409,13 @@ void facturacionDeUnaVenta() {
 
 				if (!iConFuA->existeMesa(idMesa))
 						throw invalid_argument("ERROR! No existe la mesa ingresada");
-		//
-    // ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    // list<Mesa*> listaMesas = mM->getMesas();
-    // encontro = false;
-    // for (Mesa* pMesa : listaMesas) {
-    //     if (pMesa->getNumero() == idMesa)
-    //         encontro = true;
-    // }
 
-    // if (encontro) {
-    //     cout << endl << "encontro ";
-		    // sleep(2);
+						if (!iConFuA->estaMesaTieneVenta(idMesa)){
+						        cout << endl << "esta Mesa NOOOO TieneVenta";
+						}else{
+							cout << endl << "esta Mesa SIII TieneVenta";}
+
+
 		    cout << "\nDescuento: ";
 		    cin >> descuento;
 
@@ -438,8 +434,6 @@ void facturacionDeUnaVenta() {
 								throw invalid_argument("ERROR! opcion invalida.");
 				}
 
-    // } else
-    //     cout << endl << " no encontro ";
 		} while (!finalizar);
 	} catch (exception& e) {
 		cout << endl << e.what() << endl;

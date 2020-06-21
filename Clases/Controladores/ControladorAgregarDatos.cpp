@@ -61,7 +61,7 @@ void ControladorAgregarDatos::cargarDatos(){
 	mM->agregarMesa(mesa8);
 
 	//Facturacion
-	DtFactura* dtFact;
+/*	DtFactura* dtFact;
 	DtFechaHora fecha;
 	DtProductoFactura* dtPF;
 	list<DtProductoFactura*> col_dtPF;
@@ -70,6 +70,7 @@ void ControladorAgregarDatos::cargarDatos(){
 	dtPF = new DtProductoFactura("Pan", 19, 1);
 	col_dtPF.push_back(dtPF);
 	dtFact = new DtFactura("V01", fecha.actual(), col_dtPF, 200, 0, 200, 250);
+*/
 
 	//Asignar mesas a mozos
 	mesa1->setVentaLocal(vL);
