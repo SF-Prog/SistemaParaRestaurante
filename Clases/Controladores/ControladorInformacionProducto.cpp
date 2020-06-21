@@ -3,7 +3,7 @@
 
 DtProducto ControladorInformacionProducto::seleccionarProducto(string cod)
 {
-	ManejadorProducto *mP = ManejadorProducto::getInstancia();
+/*	ManejadorProducto *mP = ManejadorProducto::getInstancia();
 	Producto *p = mP->getProducto(cod);
 	DtProductoBase dtPB = p->getDtProductoBase();
 	DtProducto dtP;
@@ -17,7 +17,7 @@ DtProducto ControladorInformacionProducto::seleccionarProducto(string cod)
 		{
 			cout << "\n\t\t" << *pm << endl;
 		}
-		}
+	}*/
 }
 
 list<DtProductoBase *> ControladorInformacionProducto::listarProductos()
