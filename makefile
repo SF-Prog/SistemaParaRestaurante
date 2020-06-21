@@ -53,10 +53,10 @@ VentaLocal.o: Clases/Objetos/VentaLocal.cpp Clases/Objetos/VentaLocal.h
 VentaProducto.o: Clases/Objetos/VentaProducto.cpp Clases/Objetos/VentaProducto.h
 	g++ -c Clases/Objetos/VentaProducto.cpp -o VentaProducto.o
 #DATATYPES
-DtAsignacion.o: Clases/DataTypes/DtAsignacion.cpp Clases/DataTypes/DtAsignacion.h
-	g++ -c Clases/Datatypes/DtAsignacion.cpp -o DtAsignacion.o
 DtFactura.o: Clases/DataTypes/DtFactura.cpp Clases/DataTypes/DtFactura.h
 	g++ -c Clases/DataTypes/DtFactura.cpp -o DtFactura.o
+DtAsignacion.o: Clases/DataTypes/DtAsignacion.cpp Clases/DataTypes/DtAsignacion.h
+	g++ -c Clases/DataTypes/DtAsignacion.cpp -o DtAsignacion.o
 DtFacturaLocal.o: Clases/DataTypes/DtFacturaLocal.cpp Clases/DataTypes/DtFacturaLocal.h
 	g++ -c Clases/DataTypes/DtFacturaLocal.cpp -o DtFacturaLocal.o
 DtFecha.o: Clases/DataTypes/DtFecha.cpp Clases/DataTypes/DtFecha.h
