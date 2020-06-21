@@ -3,25 +3,28 @@
 
 #include "DtProductoBase.h"
 
-class DtProducto: public DtProductoBase {
+class DtProducto : public DtProductoBase
+{
 private:
     float precio;
-    int cantidad;
- public:
-     //Constructores
+    int cantEnFactura;
+
+public:
+    //Constructores
     DtProducto();
     DtProducto(string, string, float, int);
 
     //Getters & Setters
     float getPrecio();
     void setPrecio(float);
-    int getCantidad();
-    void setCantidad(int);
+    int getCantEnFactura();
+    void setCantEnFactura(int);
 
     //Destructores
     virtual ~DtProducto();
 
     //Metodos
+    friend ostream &operator<<(ostream &, const DtProducto &);
 };
 
 #endif //DTPRODUCTO
