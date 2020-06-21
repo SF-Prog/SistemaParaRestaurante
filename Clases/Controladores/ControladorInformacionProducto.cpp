@@ -1,26 +1,21 @@
 #include "../Manejadores/ManejadorProducto.h"
 #include "ControladorInformacionProducto.h"
 
-DtProducto ControladorInformacionProducto::seleccionarProducto(string cod)
+DtProducto* ControladorInformacionProducto::seleccionarProducto(string cod)
 {
-/*	ManejadorProducto *mP = ManejadorProducto::getInstancia();
+	ManejadorProducto *mP = ManejadorProducto::getInstancia();
 	Producto *p = mP->getProducto(cod);
-	DtProductoBase dtPB = p->getDtProductoBase();
-	DtProducto dtP;
-	dtP->setPrecio(p->getPrecio());
-	//CANTIDAD
-	if (Menu * m dynamic_cast<Menu *>(p))
-	{
-		cout << "\n\t Productos Comunes del Menu:" << endl;
-		list<ProductoMenu *> productosMenu;
-		for (ProductoMenu *pm : productosMenu)
-		{
-			cout << "\n\t\t" << *pm << endl;
-		}
-	}*/
+	DtProductoBase *dtPB = p->getDtProductoBase();
+
+	//DtProducto productoArmado(dtPB->getCodigo(), dtPB->getDescripcion(), p->getPrecio(), 12/* aca va lo de la cantidad */);
+
+	DtProducto* productoArmado = dynamic_cast<DtProducto*>(dtPB);
+
+	return productoArmado;
+
 }
 
-list<DtProductoBase *> ControladorInformacionProducto::listarProductos()
+list<DtProductoBase*>  ControladorInformacionProducto::listarProductos()
 {
 	ManejadorProducto *mP = ManejadorProducto::getInstancia();
 	list<DtProductoBase *> dtproductos;
@@ -28,4 +23,7 @@ list<DtProductoBase *> ControladorInformacionProducto::listarProductos()
 		dtproductos.push_back(p->getDtProductoBase());
 	return dtproductos;
 }
+
+
+//Destructor
 ControladorInformacionProducto::~ControladorInformacionProducto() {}

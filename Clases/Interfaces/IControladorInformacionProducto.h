@@ -11,7 +11,7 @@ class IControladorInformacionProducto
 {
 public:
 	virtual list<DtProductoBase *> listarProductos() = 0;
-	virtual DtProducto seleccionarProducto(string) = 0;
+	virtual DtProducto* seleccionarProducto(string) = 0;
 };
 
 #endif //IControladorInformacionProducto

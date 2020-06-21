@@ -11,7 +11,7 @@ public:
 
     //Metodos
     list<DtProductoBase*> listarProductos();
-    DtProducto seleccionarProducto(string);
+    DtProducto* seleccionarProducto(string);
 
 };
 #endif //CONTROLADORINFORMACIONPRODUCTO
