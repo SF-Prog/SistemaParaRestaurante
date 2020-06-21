@@ -8,6 +8,7 @@
 #include "Controladores/ControladorFuncionesAuxiliares.h"
 #include "Controladores/ControladorIniciarVenta.h"
 #include "Controladores/ControladorQuitarProducto.h"
+#include "Controladores/ControladorInformacionProducto.h"
 
 //Constructor
 Fabrica::Fabrica() {}
@@ -50,4 +51,7 @@ IControladorIniciarVenta* Fabrica::getIControladorIniciarVenta() {
 }
 IControladorFuncionesAuxiliares* Fabrica::getIControladorFuncionesAuxiliares() {
     return new ControladorFuncionesAuxiliares();
+}
+IControladorInformacionProducto* Fabrica::getIControladorInformacionProducto() {
+    return new ControladorInformacionProducto();
 }

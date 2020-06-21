@@ -15,6 +15,7 @@ IControladorFacturacion* iConFac;
 IControladorFuncionesAuxiliares* iConFuA;
 IControladorIniciarVenta* iConInV;
 IControladorQuitarProducto* iConQtP;
+IControladorInformacionProducto* iConInfP;
 
 //PROPIEDADES
 bool primeraVezAsignacion = true;
@@ -537,8 +538,24 @@ void informacionProducto() {
     cout << "_____________________________________________________" << endl;
     cout << "=======I N F O R M A C I O N   P R O D U C T O=======" << endl;
     cout << "_____________________________________________________" << endl;
-}
+		bool primeraVez = true;
+		list<DtProductoBase*> productosActuales = iConInfP->listarProductos() ;
+		if (productosActuales.empty()) {
+				system("clear");
+				cout<< "          -No hay Productos en el Sistema-" << endl;
+				system("clear");
+		} else {
+				if(primeraVez){
+						cout<< "Lista de productos actualizada: " << endl;
+						for (DtProductoBase* dtPB : productosActuales)
+								cout << *dtPB << endl;
+				}else{
+						/*while(){
 
+						}*/
+				}
+}
+}
 void cargarDatosPrueba() {
     system("clear");
 
@@ -676,6 +693,7 @@ int main(){
     iConInV = fabrica->getIControladorIniciarVenta();
     iConQtP = fabrica->getIControladorQuitarProducto();
     iConAsMM = fabrica->getIControladorAsignarMesasAMozos();
+		iConInfP = fabrica->getIControladorInformacionProducto();
 
     desplegarMenu();
 
