@@ -325,97 +325,126 @@ void quitarProductoAVenta() {
     cout << "====Q U I T A R   P R O D U C T O   A   V E N T A====" << endl;
     cout << "_____________________________________________________" << endl;
 
-    int mesaElegida;
-    string codigoProductoEliminar;
-    int cantidadProductoEliminar;
-    string confirmacion;
-    string quitar="s";
-
-
-    cout << "Ingrese la mesa a la cual quitar productos: " << endl;
-    cin >> mesaElegida;
-
-    if(iConFuA->existeMesa(mesaElegida)){
-        Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
-        list<DtProducto*> productosVenta;
-        VentaLocal* vloc = mesa->getVentaLocal();
-
-        if(vloc == NULL){
-            std::cout << "\t\t\tLa mesa "<< mesa->getNumero() << " NO tiene VentaLocal asignada." << '\n';
-            sleep(2);
-            system("clear");
-        }else{
-            productosVenta = iConQtP->listarProductos(mesaElegida);
-            while(quitar=="S" || quitar=="s"){
-
-                for (list<DtProducto*>::iterator it = productosVenta.begin(); it != productosVenta.end(); it++)	{
-
-                    DTPorductoBase* productoBase = dynamic_cast<DtProductoBase>(*it)
-                    cout << productoBase << endl;
-                }
-                cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
-                cin >> codigoProductoEliminar;
-                cout << "Ingrese la cantidad de producto que desea eliminar: " << endl;
-                cin >> cantidadProductoEliminar;
-
-                DtProductoCantidad productoEliminar = DtProductoCantidad (codigoProductoEliminar, cantidadProductoEliminar);
-                iConQtP->seleccionarProductoEliminar(productoEliminar);
-
-                cout << "Desea confirmar la quita del producto de la venta?: S/N para continuar " << endl;
-                cin >> confirmacion;
-
-                if(confirmacion=="S" || confirmacion=="s"){
-                    iConQtP->confirmarQuitarProducto();
-                    cout << "Se quito un producto de la mesa a la venta"<< endl;
-                }else{
-                    iConQtP->cancelarQuitarProducto();
-                    cout << "Ha cancelado la quita "<< endl;
-                }
-
-                cout << "Desea quitar otro producto?: S/N para continuar " << endl;
-                cin >> quitar;
-            }
-            system("clear");
-        }
-    }else{
-        std::cout << "\t\t\tMesa Incorrecta" << '\n';
-        sleep(2);
-        system("clear");
-    }
+//     int mesaElegida;
+//     string codigoProductoEliminar;
+//     int cantidadProductoEliminar;
+//     string confirmacion;
+//     string quitar="s";
+//
+//
+//     cout << "Ingrese la mesa a la cual quitar productos: " << endl;
+//     cin >> mesaElegida;
+//
+//     if(iConFuA->existeMesa(mesaElegida)){
+//         Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
+//         list<DtProducto*> productosVenta;
+//         VentaLocal* vloc = mesa->getVentaLocal();
+//
+//         if(vloc == NULL){
+//             std::cout << "\t\t\tLa mesa "<< mesa->getNumero() << " NO tiene VentaLocal asignada." << '\n';
+//             sleep(2);
+//             system("clear");
+//         }else{
+//             productosVenta = iConQtP->listarProductos(mesaElegida);
+//             while(quitar=="S" || quitar=="s"){
+//
+//                 for (list<DtProducto*>::iterator it = productosVenta.begin(); it != productosVenta.end(); it++)	{
+//
+//                     DTPorductoBase* productoBase = dynamic_cast<DtProductoBase>(*it)
+//                     cout << productoBase << endl;
+//                 }
+//                 cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
+//                 cin >> codigoProductoEliminar;
+//                 cout << "Ingrese la cantidad de producto que desea eliminar: " << endl;
+//                 cin >> cantidadProductoEliminar;
+//
+//                 DtProductoCantidad productoEliminar = DtProductoCantidad (codigoProductoEliminar, cantidadProductoEliminar);
+//                 iConQtP->seleccionarProductoEliminar(productoEliminar);
+//
+//                 cout << "Desea confirmar la quita del producto de la venta?: S/N para continuar " << endl;
+//                 cin >> confirmacion;
+//
+//                 if(confirmacion=="S" || confirmacion=="s"){
+//                     iConQtP->confirmarQuitarProducto();
+//                     cout << "Se quito un producto de la mesa a la venta"<< endl;
+//                 }else{
+//                     iConQtP->cancelarQuitarProducto();
+//                     cout << "Ha cancelado la quita "<< endl;
+//                 }
+//
+//                 cout << "Desea quitar otro producto?: S/N para continuar " << endl;
+//                 cin >> quitar;
+//             }
+//             system("clear");
+//         }
+//     }else{
+//         std::cout << "\t\t\tMesa Incorrecta" << '\n';
+//         sleep(2);
+//         system("clear");
+//     }
 }
 
 void facturacionDeUnaVenta() {
-    system("clear");
 
-    cout << "_____________________________________________________" << endl;
-    cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
-    cout << "_____________________________________________________" << endl;
+  int idMesa;
+  float descuento;
+  DtFacturaLocal dtFL;
+  bool encontro, finalizar;
+	string confirma;
 
-    int idMesa;
-    float descuento;
-    DtFacturaLocal dtFL;
-    bool encontro;
 
-    cout << endl << "Ingrese Nº de mesa: ";
-    cin >> idMesa;
-    sleep(2);
-    cout << "\nDescuento: ";
-    cin >> descuento;
+	try {
+			finalizar = false;
+			do {
 
-    ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    list<Mesa*> listaMesas = mM->getMesas();
-    encontro = false;
-    for (Mesa* pMesa : listaMesas) {
-        if (pMesa->getNumero() == idMesa)
-            encontro = true;
-    }
+				system("clear");
 
-    if (encontro) {
-        cout << endl << "encontro ";
+		    cout << "_____________________________________________________" << endl;
+		    cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
+		    cout << "_____________________________________________________" << endl;
+
+		    cout << endl << "Ingrese Nº de mesa: ";
+		    cin >> idMesa;
+
+				if (!iConFuA->existeMesa(idMesa))
+						throw invalid_argument("ERROR! No existe la mesa ingresada");
+		//
+    // ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    // list<Mesa*> listaMesas = mM->getMesas();
+    // encontro = false;
+    // for (Mesa* pMesa : listaMesas) {
+    //     if (pMesa->getNumero() == idMesa)
+    //         encontro = true;
+    // }
+
+    // if (encontro) {
+    //     cout << endl << "encontro ";
+		    // sleep(2);
+		    cout << "\nDescuento: ";
+		    cin >> descuento;
+
+				dtFL = iConFac->facturar(idMesa,descuento);
+
         cout << endl << "Se ha generado la siguiente factura:";
         cout << endl << dtFL;
-    } else
-        cout << endl << " no encontro ";
+
+				cout << endl << "¿Desea facturar otra mesa? (y/n): ";
+				cin >> confirma;
+				if (confirma == "y" || confirma == "Y")
+						finalizar = false;
+				else {
+						finalizar = true;
+						if (confirma != "n" && confirma != "N")
+								throw invalid_argument("ERROR! opcion invalida.");
+				}
+
+    // } else
+    //     cout << endl << " no encontro ";
+		} while (!finalizar);
+	} catch (exception& e) {
+		cout << endl << e.what() << endl;
+	}
+
 }
 
 void asignarMozosAMesas() {

@@ -43,6 +43,12 @@ void ControladorIniciarVenta::confirmarIniciarVenta() {
 	mo->asignarMesas(this->getMesas(), vl);
 	ManejadorVenta* mV = ManejadorVenta::getInstancia();
 	mV->agregarVenta(vl);
+
+	//RS: agrego venta a mesas
+	// ManejadorMesa* mM = ManejadorMesa::getInstancia();
+	// Mesa* me = mM->getMesa(idMesa);
+	// VentaLocal* v = me->setVentaLocal(vl);
+	//RS: FIN
 }
 
 list<int> ControladorIniciarVenta::listarMesas() {

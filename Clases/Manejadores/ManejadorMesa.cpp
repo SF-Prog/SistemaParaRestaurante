@@ -35,4 +35,5 @@ void ManejadorMesa::agregarMesa(Mesa* m) {
 bool ManejadorMesa::existeMesa(int cod) {
     map<int, Mesa*>::iterator it = this->mesas.find(cod);
     return (it != this->mesas.end());
-} 
+
+}

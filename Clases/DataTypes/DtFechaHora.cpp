@@ -33,8 +33,7 @@ DtFechaHora::~DtFechaHora() {}
 
 //Metodos
 ostream& operator <<(ostream& salida, const DtFechaHora& dtf) {
-	cout << (DtFecha)dtf;
-	cout << " " << dtf.hora << ":" << dtf.min << ":" << dtf.seg << endl;
+	cout << (DtFecha)dtf  -  << " " << dtf.hora << ":" << dtf.min << ":" << dtf.seg << endl;
 	return salida;
 }
 DtFechaHora DtFechaHora::actual() {
