@@ -42,3 +42,13 @@ bool ControladorFuncionesAuxiliares::existeMesa(int codigo) {
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     return mM->existeMesa(codigo);
 }
+bool ControladorFuncionesAuxiliares::MostrarInformacion(string codigo){
+
+	ManejadorProducto *mP = ManejadorProducto::getInstancia();
+	Producto *p = mP->getProducto(codigo);
+
+	if (p->getTipoProducto()==menu){
+		return true;
+		
+}else{return false;}
+}

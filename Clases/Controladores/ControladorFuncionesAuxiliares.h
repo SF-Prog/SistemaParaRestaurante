@@ -13,6 +13,7 @@ public:
     TipoProducto tipoProducto(string);
     Mesa* obtenerMesa(int);
     bool existeMesa(int);
+    bool MostrarInformacion(string);
 };
 
 #endif //CONTROLADORFUNCIONESAUXILIARES

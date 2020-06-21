@@ -12,6 +12,7 @@ public:
 	virtual TipoProducto tipoProducto(string) = 0;
 	virtual Mesa* obtenerMesa(int) = 0;
     virtual bool existeMesa(int) = 0;
+    virtual	bool MostrarInformacion(string) = 0;
 };
 
 #endif //ICONTROLADORFUNCIONESAUXILIARES
