@@ -1,6 +1,6 @@
 #ifndef DTPRODUCTOMENU
 #define DTPRODUCTOMENU
-
+/*
 #include <string>
 #include <iostream>
 #include "DtProducto.h"
@@ -27,5 +27,5 @@ public:
 
     //Metodos
 };
-
+*/
 #endif //DTPRODUCTOCOMUN

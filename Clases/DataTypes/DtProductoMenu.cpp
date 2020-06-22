@@ -1,5 +1,5 @@
-#include "DtProductoComun.h"
-
+#include "DtProductoMenu.h"
+/*
 DtProductoMenu::DtProductoMenu() {}
 DtProductoMenu::DtProductoMenu(string codigo, string descripcion, float precio, float cantidadEF, list<DtProductoComun*> listaCom) : DtProducto(codigo, descripcion, precio, cantidadEF)
 {
@@ -19,3 +19,4 @@ void DtProductoMenu::setListaComunes(list<DtProductoComun*> listaCom)
 
 //Destructores
 virtual DtProductoMenu::~DtProductoComun() {}
+*/

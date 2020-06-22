@@ -1,6 +1,6 @@
 #ifndef DTPRODUCTOCOMUN
 #define DTPRODUCTOCOMUN
-
+/*
 #include <string>
 #include <iostream>
 #include "DtProducto.h"
@@ -27,5 +27,5 @@ public:
     //Metodos
     friend ostream &operator<<(ostream &, const DtProductoComun &);
 };
-
+*/
 #endif //DTPRODUCTOCOMUN
