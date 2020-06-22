@@ -11,7 +11,7 @@ bool ControladorFuncionesAuxiliares::estaMesaTieneVenta(int mesa) {
     //RS: Viendo si consigo el codigo de la venta.
     VentaLocal* venLoc = M->getVentaLocal();
     string venCod = venLoc->getCodigo();
-    cout << endl << "obj: [ControladorFuncionesAuxiliares.h]  -  [RS]   -    estaMesaTieneVenta (codigo de venta)  "<< venCod;
+    cout << endl << "obj: [ControladorFuncionesAuxiliares.h]  -  [RS]   -    estaMesaTieneVenta (codigo de venta)  "<< venCod << endl;
     //Fin debug
     return tiene;
 }
@@ -49,6 +49,6 @@ bool ControladorFuncionesAuxiliares::MostrarInformacion(string codigo){
 
 	if (p->getTipoProducto()==menu){
 		return true;
-		
+
 }else{return false;}
 }

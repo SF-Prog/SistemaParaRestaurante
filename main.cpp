@@ -543,58 +543,58 @@ void informacionProducto() {
     cout << "_____________________________________________________" << endl;
     cout << "=======I N F O R M A C I O N   P R O D U C T O=======" << endl;
     cout << "_____________________________________________________" << endl;
-			bool primeraVez = true;
-			bool esmenu;
-    bool seguirMostrando = true;
-    string codigoProducto;
-    char opcion;
-
-		list<DtProductoBase*> productosActuales = iConInfP->listarProductos();
-		if (productosActuales.empty()) {
-				system("clear");
-				cout<< "          -No hay Productos en el Sistema-" << endl;
-				system("clear");
-		} else {
-				if(primeraVez){
-						cout<< "Lista de productos actualizada: " << endl;
-						for (DtProductoBase* dtPB : productosActuales)
-								cout << *dtPB << endl;
-				}else{
-						while(seguirMostrando){
-
-              cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
-              cin >> codigoProducto;
-
-              if (iConFuA->existeProducto(codigoProducto)){
-                DtProducto* productoInfo = iConInfP->seleccionarProducto(codigoProducto);
-				esmenu = iConFuA-> MostrarInformacion(codigoProducto);
-				
-                cout << "\n\t\t" << productoInfo << endl;
-                
-                if (esmenu){
-                cout << "\n\t Productos Comunes del Menu:" << endl;
-
-		DtProductoMenu* productoArmadoMenu = dynamic_cast<DtProductoMenu*>(productoInfo);
-			
-		list<DtProductoComun*> productosMenu = productoArmadoMenu->getListaComunes();
-
-		for (DtProductoComun *pm : productosMenu){
-			cout << "\n\t\t" << *pm << endl;
-		}
-	}             
-
-                cout << "Desea Seguir viendo la informacion de mas productos? S/N" << endl;
-                cin >> opcion;
-
-                if (opcion =='n' || opcion =='N') {
-                  seguirMostrando = false;
-                }
-
-              }else{seguirMostrando = false;}
-
-						}
-				}
-}
+// 			bool primeraVez = true;
+// 			bool esmenu;
+//     bool seguirMostrando = true;
+//     string codigoProducto;
+//     char opcion;
+//
+// 		list<DtProductoBase*> productosActuales = iConInfP->listarProductos();
+// 		if (productosActuales.empty()) {
+// 				system("clear");
+// 				cout<< "          -No hay Productos en el Sistema-" << endl;
+// 				system("clear");
+// 		} else {
+// 				if(primeraVez){
+// 						cout<< "Lista de productos actualizada: " << endl;
+// 						for (DtProductoBase* dtPB : productosActuales)
+// 								cout << *dtPB << endl;
+// 				}else{
+// 						while(seguirMostrando){
+//
+//               cout << "Ingrese el codigo de producto que desea eliminar: " << endl;
+//               cin >> codigoProducto;
+//
+//               if (iConFuA->existeProducto(codigoProducto)){
+//                 DtProducto* productoInfo = iConInfP->seleccionarProducto(codigoProducto);
+// 				esmenu = iConFuA-> MostrarInformacion(codigoProducto);
+//
+//                 cout << "\n\t\t" << productoInfo << endl;
+//
+//                 if (esmenu){
+//                 cout << "\n\t Productos Comunes del Menu:" << endl;
+//
+// 		DtProductoMenu* productoArmadoMenu = dynamic_cast<DtProductoMenu*>(productoInfo);
+//
+// 		list<DtProductoComun*> productosMenu = productoArmadoMenu->getListaComunes();
+//
+// 		for (DtProductoComun *pm : productosMenu){
+// 			cout << "\n\t\t" << *pm << endl;
+// 		}
+// 	}
+//
+//                 cout << "Desea Seguir viendo la informacion de mas productos? S/N" << endl;
+//                 cin >> opcion;
+//
+//                 if (opcion =='n' || opcion =='N') {
+//                   seguirMostrando = false;
+//                 }
+//
+//               }else{seguirMostrando = false;}
+//
+// 						}
+// 				}
+// }
 }
 void cargarDatosPrueba() {
     system("clear");
