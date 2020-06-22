@@ -5,7 +5,7 @@
 
 class DtProducto : public DtProductoBase
 {
-private:
+protected:
     float precio;
     int cantEnFactura;
 
