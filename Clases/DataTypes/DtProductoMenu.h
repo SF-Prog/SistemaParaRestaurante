@@ -11,16 +11,16 @@ using namespace std;
 class DtProductoMenu : public DtProducto
 {
 protected:
-    list<DtProductoComun *> listaComunes;
+    list<DtProductoComun*> listaComunes;
 
 public:
     //Constructores
     DtProductoMenu();
-    DtProductoMenu(string, string, list<DtProductoComun *>);
+    DtProductoMenu(string, string, list<DtProductoComun*>);
 
     //Getters & Setters
-    list<DtProductoComun *> getListaComunes();
-    void setListaComunes(list<DtProductoComun *>);
+    list<DtProductoComun*> getListaComunes();
+    void setListaComunes(list<DtProductoComun*>);
 
     //Destructores
     virtual ~DtProductoMenu();

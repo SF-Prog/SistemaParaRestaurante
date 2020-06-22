@@ -1,16 +1,18 @@
+#include "DtProductoComun.h"
+
 DtProductoMenu::DtProductoMenu() {}
-DtProductoMenu::DtProductoMenu(string codigo, string descripcion, float precio, float cantidadEF, list<DtProductoComun *> listaCom) : DtProducto(codigo, descripcion, precio, cantidadEF)
+DtProductoMenu::DtProductoMenu(string codigo, string descripcion, float precio, float cantidadEF, list<DtProductoComun*> listaCom) : DtProducto(codigo, descripcion, precio, cantidadEF)
 {
     this->listaComunes = listaCom;
 }
 
 //Getters & Setters
-list<DtProductoComun *> DtProductoMenu::getCantEnMenu()
+list<DtProductoComun*> DtProductoMenu::getListaComunes()
 {
     return this->listaComunes;
 }
 
-void DtProductoMenu::setCantEnMenu(list<DtProductoComun *> listaCom)
+void DtProductoMenu::setListaComunes(list<DtProductoComun*> listaCom)
 {
     this->listaComunes = listaCom;
 }
