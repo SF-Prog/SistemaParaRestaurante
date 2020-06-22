@@ -562,7 +562,7 @@ void bajaProducto() {
     }
 }
 
-/*
+
 void informacionProducto() {
     system("clear");
 
