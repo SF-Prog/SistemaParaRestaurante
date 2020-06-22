@@ -6,11 +6,11 @@ DtProducto* ControladorInformacionProducto::seleccionarProducto(string cod)
 	ManejadorProducto *mP = ManejadorProducto::getInstancia();
 	Producto *p = mP->getProducto(cod);
 	DtProductoBase *dtPB = p->getDtProductoBase();
-
+	
 	//DtProducto productoArmado(dtPB->getCodigo(), dtPB->getDescripcion(), p->getPrecio(), 12/* aca va lo de la cantidad */);
-
+	
 	DtProducto* productoArmado = dynamic_cast<DtProducto*>(dtPB);
-
+	
 	return productoArmado;
 
 }
