@@ -22,6 +22,7 @@ VentaLocal::~VentaLocal() {}
 //Metodos
 bool VentaLocal::tieneElProducto(string codigoProducto) {
     bool tiene = false;
+    //cout << "Size : " << this->getVentaProductos().size() << endl;
     for (VentaProducto* vp : this->getVentaProductos()) {
         if (vp->getCodigoProducto() == codigoProducto) {
             tiene = true;
@@ -33,8 +34,10 @@ bool VentaLocal::tieneElProducto(string codigoProducto) {
 void VentaLocal::agregarProducto(DtProductoCantidad pc) {
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
     Producto* pro = mP->getProducto(pc.getCodigo());
+    //cout << "AGREGAR PRODUCTO CODIGO PRODUCTO : " << pro->getCodigo() << endl;
     VentaProducto* vp = new VentaProducto(pc.getCantidad(), pro);
     this->getVentaProductos().push_back(vp);
+    //cout << "AGREGAR PRODUCTO SIZE : " << this->getVentaProductos().size() << endl;
 }
 void VentaLocal::incrementar(DtProductoCantidad pc) {
     for (VentaProducto* vp : this->getVentaProductos()) {

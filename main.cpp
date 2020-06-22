@@ -1,23 +1,6 @@
 #include <algorithm>
 #include <unistd.h>
 #include "Clases/Fabrica.h"
-#define RESET   "\033[0m"
-#define BLACK   "\033[30m"      /* Black */
-#define RED     "\033[31m"      /* Red */
-#define GREEN   "\033[32m"      /* Green */
-#define YELLOW  "\033[33m"      /* Yellow */
-#define BLUE    "\033[34m"      /* Blue */
-#define MAGENTA "\033[35m"      /* Magenta */
-#define CYAN    "\033[36m"      /* Cyan */
-#define WHITE   "\033[37m"      /* White */
-#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
-#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
-#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
-#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
-#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
-#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
-#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
 //FABRICA
 Fabrica* fabrica;
@@ -214,141 +197,115 @@ void agregarProductoAVenta() {
     cout << "===A G R E G A R   P R O D U C T O   A   V E N T A===" << endl;
     cout << "_____________________________________________________" << endl;
 
-    //Listo las mesas para que seleccione a cual debera agregar producto
-    cout << "Seleccione la mesa para agregar producto: " << endl;
-    bool exitAgregar=true;
-    bool tieneVentaLocal;
-    int continuar;
-    while (exitAgregar) {
-        list <int>mesas = iConInV->listarMesas();
-        for (list<int>::iterator it = mesas.begin(); it!=mesas.end(); ++it){
-            cout << "\tMesa Nro.: " << *it;
-            cout << "\t" << endl;
-        }
-        cout << endl << "Seleccione Mesa: " << endl;
-        int mesaSeleccionada = 0;
+    list<int> mesas = iConInV->listarMesas();
+    if (mesas.size() > 0) {
+        cout << endl << "Seleccione la mesa para agregar productos: " << endl << endl;
+
+        for (list<int>::iterator it = mesas.begin(); it != mesas.end(); ++it)
+            cout << "Mesa Nro.: " << *it << endl;
+
+        int mesaSeleccionada;
+        cout << endl << "Ingrese su numero: ";
         cin >> mesaSeleccionada;
-        if(iConFuA->existeMesa(mesaSeleccionada)){
-            tieneVentaLocal=iConFuA->estaMesaTieneVenta(mesaSeleccionada);
-            if (!tieneVentaLocal) {
-                cout << "La Mesa seleccionada no posee ventas iniciadas" << endl;
-                char S;
-                cout << "Para salir presione S, C para continuar" << endl;
-                cin >> S;
-                if (S =='S' || S =='s')
-                    exitAgregar=false;
-            } else {
-                int prod;
-                string seleccion;
-                int cantSeleccion = 0;
-                cout<< "Seleccione el producto que desea agregar " << endl;
-                cout  << " \t 1.Producto Comun" << endl << "\t 2.Producto Menu\n" << endl << "\t\t " << endl;
-                cin >> prod;
-                bool exitElegirProd=true;
-                while(prod!=0){
-                    switch (prod){
-                        case 1: {
-                            while (continuar!=0){
-                                list<DtProductoBase *> ProdComunes = iConAlP->listarProductosComunes();
-                                cout <<"------------------------"<<endl;
-                                cout << "\nProducto\t\tCodigo\t" <<endl;
-                                cout << "-----------------------"<<endl;
-                                for (list<DtProductoBase *>::iterator it = ProdComunes.begin(); it != ProdComunes.end(); it++) {
-                                    cout << "" << (*it)->getDescripcion();
-                                    cout << "\t\t\t" << (*it)->getCodigo();
-                                    cout << "\t" << endl;
-                                }
-                                cout << "-----------------------"<<endl;
-                                cout << endl << "Ingrese el codigo: " << endl;
+
+        bool exitAgregar = true;
+        while (exitAgregar) {
+            int continuar;
+
+            if (iConFuA->existeMesa(mesaSeleccionada)) {
+                if (!iConFuA->estaMesaTieneVenta(mesaSeleccionada)) {
+                    exitAgregar = false;
+                    cout << "La Mesa seleccionada no posee ventas iniciadas." << endl;
+                }
+                else {
+                    list<DtProductoBase*> productos;
+                    int prod, cantSeleccion = 0;
+                    string seleccion;
+
+                    cout << "Seleccione el producto que desea agregar " << endl;
+                    cout << " \t 1.Producto Comun \n" << "\t 2.Producto Menu\n" << "\t 0.Salir" << endl;
+
+                    cin >> prod;
+                    switch (prod) {
+                    case 1: {
+                        productos = iConAlP->listarProductosComunes();
+                        break;
+                    }
+                    case 2: {
+                        productos = iConAlP->listarProductosMenu();
+                        break;
+                    }
+                    default: {
+                        exitAgregar = false;
+                        break;
+                    }
+                    }
+
+                    if (exitAgregar) {
+                        cout << "Producto\t\tCodigo\t" << endl;
+                        for (list<DtProductoBase*>::iterator it = productos.begin(); it != productos.end(); it++) {
+                            cout << "" << (*it)->getDescripcion();
+                            cout << "\t\t\t" << (*it)->getCodigo();
+                            cout << "\t" << endl;
+                        }
+                        cout << endl << "Ingrese el codigo: ";
+                        cin >> seleccion;
+
+                        if (iConFuA->existeProducto(seleccion)) {
+                            iConAgP->seleccionarMesa(mesaSeleccionada);
+
+                            cout << endl << "Ingrese la cantidad: ";
+                            cin >> cantSeleccion;
+
+                            VentaLocal* v = iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);
+                            DtProductoCantidad dtPC = DtProductoCantidad(seleccion, cantSeleccion);
+
+                            iConAgP->seleccionarProducto(dtPC);
+
+                            if (iConAgP->hayEsteProductoEnEnEstaVenta(v, seleccion)) {
+                                iConAgP->incrementarProductoEnVenta(v, dtPC);
+                                cout << "Se incremento la cantidad del Producto en la venta." << endl;
+                            }
+                            else {
+                                cout << endl << "¿Desea confirmar el producto en la venta? (y/n): ";
                                 cin >> seleccion;
-                                if(iConFuA->existeProducto(seleccion)){
-                                    iConAgP->seleccionarMesa(mesaSeleccionada);
-                                    cout << "-----------------------"<<endl;
-                                    cout << "Ingrese la cantidad: " << endl;
-                                    cin >> cantSeleccion;
-                                    VentaLocal* v = iConFuA->obtenerCodigoDeVenta(mesaSeleccionada); //obtengo id de la ventalLocal de la mesa que selecciono
-                                    DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
-                                    if (iConAgP->hayEsteProductoEnEnEstaVenta(v, seleccion)) {
-                                        iConAgP->incrementarProductoEnVenta(v, *dtPC);
-                                        cout << "Se incremento la cantidad del Producto en la venta" << endl;
-                                    }
-                                    else {
-                                        iConAgP->confirmarAgregarProductoVenta();
-                                        cout << "Se agrego un nuevo producto a la venta" << endl;
-                                    }
+                                if (seleccion == "y" || seleccion == "Y") {
+                                    iConAgP->confirmarAgregarProductoVenta();
+                                    cout << "Se agrego un nuevo producto a la venta." << endl;
                                 }
-                                else{
-                                    cout << "No existe el producto seleccionado" << endl;
-                                }
-                                cout << "Desea agregar otro producto? " << endl << " -Presione 1 para continuar\n -Presiones 0 para salir" <<endl;
-                                cin >> continuar;
-                                if (continuar == 0) {
-                                    prod=0;
-                                    exitElegirProd = false;
-                                    exitAgregar = false;
-                                } else{
-                                    prod =1;
+                                else {
+                                    iConAgP->cancelarAgregarProductoVenta();
+                                    if (seleccion != "n" && seleccion != "N")
+                                        cout << "Opcion invalida. ";
+                                    cout << "No se pudo agregar el producto a la venta." << endl;
                                 }
                             }
                         }
-                        case 2: {
-                            while(continuar!=0){
-                                list<DtProductoBase*> prodMenu = iConAlP->listarProductosMenu();
-                                cout <<"------------------------"<<endl;
-                                cout << "\nProducto\t\tCodigo\t" <<endl;
-                                cout << "-----------------------"<<endl;
-                                for (list<DtProductoBase*>::iterator it =prodMenu.begin(); it != prodMenu.end(); it++) {
-                                    cout << ""<< (*it)->getDescripcion();
-                                    cout << "\t\t\t" << (*it)->getCodigo();
-                                    cout << "\t" << endl;
-                                }
-                                cout << "-----------------------"<<endl;
-                                cout << endl << "Ingrese el codigo: " << endl;
-                                cin >> seleccion;
-                                if(iConFuA->existeMozo(seleccion)){
-                                    iConAgP->seleccionarMesa(mesaSeleccionada);
-                                    cout << "-----------------------"<<endl;
-                                    cout << endl << "Ingrese la cantidad: " << endl;
-                                    cin >> cantSeleccion;
-                                    VentaLocal* v= iConFuA->obtenerCodigoDeVenta(mesaSeleccionada); //obtengo id de la ventalLocal de la mesa que selecciono
-                                    DtProductoCantidad* dtPC = new DtProductoCantidad(seleccion, cantSeleccion);
-                                    if(iConAgP->hayEsteProductoEnEnEstaVenta(v, seleccion)) {
-                                        iConAgP->incrementarProductoEnVenta(v, *dtPC);
-                                        cout << "Se incremento la cantidad del Producto en la venta" << endl;
-                                    } else {
-                                        iConAgP->confirmarAgregarProductoVenta();
-                                        cout << "Se agrego un nuevo producto a la venta" << endl;
-                                    }
-                                }
-                                else{
-                                    cout << "No existe el producto indicado"<< endl;
-                                }
-                                cout << endl << endl << "Desea agregar otro producto? " << endl << " 1.Para continuar  0. Para salir" <<endl;
-                                cin >> continuar;
-                                if (continuar == 2 ) {
-                                    prod=0;
-                                    exitElegirProd = false;
-                                    exitAgregar = false;
-                                } else{
-                                    prod=2;
-                                }
+                        else
+                            cout << "No existe el producto indicado." << endl;
 
-                            }
-                        }
+                        cout << endl << "¿Desea agregar otro producto?? (y/n): ";
+                        cin >> seleccion;
 
-                        default:
-                            exitElegirProd=false;
+                        if (seleccion == "y" || seleccion == "Y")
+                            prod = 1;
+                        else {
+                            prod = 0;
                             exitAgregar = false;
-                            prod=0;
-
+                            if (seleccion != "n" && seleccion != "N")
+                                cout << "Opcion invalida.";
+                        }
                     }
                 }
             }
-        }else{
-            cout << "La mesa seleccionada no existe " << endl;
+            else {
+                exitAgregar = false;
+                cout << "La mesa seleccionada no existe." << endl;
+            }
         }
-
     }
+    else
+        cout << endl << "El sistema no posee mesas." << endl;
 }
 
 void quitarProductoAVenta() {
@@ -561,7 +518,6 @@ void bajaProducto() {
 
     }
 }
-
 
 void informacionProducto() {
     system("clear");

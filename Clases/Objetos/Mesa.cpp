@@ -29,10 +29,13 @@ bool Mesa::tieneVenta() {
     return this->getVentaLocal() != NULL;
 }
 void Mesa::agregarProducto(DtProductoCantidad pc) {
-    if (this->getVentaLocal()->tieneElProducto(pc.getCodigo()))
+    if (this->getVentaLocal()->tieneElProducto(pc.getCodigo())) {
+        //cout << "Entro1" << endl;
         this->getVentaLocal()->incrementar(pc);
-    else
+    } else {
+        //cout << "Entro2" << endl;
         this->getVentaLocal()->agregarProducto(pc);
+    }
 }
 list<DtProducto*> Mesa::listarProductos() {
     return this->getVentaLocal()->listarProductos();
