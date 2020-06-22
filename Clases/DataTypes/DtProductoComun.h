@@ -1,6 +1,6 @@
 #ifndef DTPRODUCTOCOMUN
 #define DTPRODUCTOCOMUN
-/*
+
 #include <string>
 #include <iostream>
 #include "DtProducto.h"
@@ -15,7 +15,7 @@ protected:
 public:
     //Constructores
     DtProductoComun();
-    DtProductoComun(string, string, float, float);
+    DtProductoComun(string, string, float, int, float);
 
     //Getters & Setters
     float getCantEnMenu();
@@ -27,5 +27,5 @@ public:
     //Metodos
     friend ostream &operator<<(ostream &, const DtProductoComun &);
 };
-*/
+
 #endif //DTPRODUCTOCOMUN

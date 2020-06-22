@@ -1,8 +1,8 @@
 #include "DtProductoComun.h"
-/*
+
 //Constructores
-DtProductoComun::DtProductoComun();
-DtProductoComun::DtProductoComun(string codigo, string descripcion, float precio, float cantidadEM) : DtProducto(codigo, descripcion, precio)
+DtProductoComun::DtProductoComun(){}
+DtProductoComun::DtProductoComun(string codigo, string descripcion, float precio, int cantidadFactura, float cantidadEM) : DtProducto(codigo, descripcion, precio, cantidadFactura)
 {
     this->cantEnMenu = cantidadEM;
 }
@@ -10,7 +10,7 @@ DtProductoComun::DtProductoComun(string codigo, string descripcion, float precio
 //Getters & Setters
 float DtProductoComun::getCantEnMenu()
 {
-    return this->precio;
+    return this->cantEnMenu;
 }
 void DtProductoComun::setCantEnMenu(float cantEM)
 {
@@ -18,11 +18,11 @@ void DtProductoComun::setCantEnMenu(float cantEM)
 }
 
 //Destructores
-virtual DtProductoComun::~DtProductoComun() {}
+DtProductoComun::~DtProductoComun() {}
 
 //Metodos
-friend ostream &operator<<(ostream &salida, const DtProductoComun &dtPC)
+ostream &operator<<(ostream &salida, const DtProductoComun &dtPC)
 {
     salida << (DtProductoBase)dtPC << "  \n\tPrecio:  " << dtPC.precio << "\n\t Cantidad en el Menu:" << dtPC.cantEnMenu << endl;
     return salida;
-}*/
+}

@@ -1,7 +1,11 @@
+
+#include "DtProductoComun.h"
 #include "DtProductoMenu.h"
-/*
+#include "DtProducto.h"
+
+
 DtProductoMenu::DtProductoMenu() {}
-DtProductoMenu::DtProductoMenu(string codigo, string descripcion, float precio, float cantidadEF, list<DtProductoComun*> listaCom) : DtProducto(codigo, descripcion, precio, cantidadEF)
+DtProductoMenu::DtProductoMenu(string codigo, string descripcion, float precio, int cantidadEF, list<DtProductoComun*> listaCom) : DtProducto(codigo, descripcion, precio, cantidadEF)
 {
     this->listaComunes = listaCom;
 }
@@ -18,5 +22,5 @@ void DtProductoMenu::setListaComunes(list<DtProductoComun*> listaCom)
 }
 
 //Destructores
-virtual DtProductoMenu::~DtProductoComun() {}
-*/
+DtProductoMenu::~DtProductoMenu() {}
+// DtProductoMenu::~DtProductoComun() {}

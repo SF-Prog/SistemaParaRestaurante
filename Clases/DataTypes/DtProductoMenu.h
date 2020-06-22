@@ -1,8 +1,9 @@
 #ifndef DTPRODUCTOMENU
 #define DTPRODUCTOMENU
-/*
+
 #include <string>
 #include <iostream>
+#include <list>
 #include "DtProducto.h"
 #include "DtProductoComun.h"
 
@@ -16,7 +17,7 @@ protected:
 public:
     //Constructores
     DtProductoMenu();
-    DtProductoMenu(string, string, list<DtProductoComun*>);
+    DtProductoMenu(string, string, float, int,  list<DtProductoComun*>);
 
     //Getters & Setters
     list<DtProductoComun*> getListaComunes();
@@ -27,5 +28,4 @@ public:
 
     //Metodos
 };
-*/
 #endif //DTPRODUCTOCOMUN
