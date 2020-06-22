@@ -8,11 +8,6 @@ bool ControladorFuncionesAuxiliares::estaMesaTieneVenta(int mesa) {
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* M = mM->getMesa(mesa);
     bool tiene = M->tieneVenta();
-    //RS: Viendo si consigo el codigo de la venta.
-    // VentaLocal* venLoc = M->getVentaLocal();
-    // string venCod = venLoc->getCodigo();
-    // cout << endl << "obj: [ControladorFuncionesAuxiliares.h]  -  [RS]   -    estaMesaTieneVenta (codigo de venta)  "<< venCod;
-    //Fin debug
     return tiene;
 }
 bool ControladorFuncionesAuxiliares::existeMozo(string codigo) {
