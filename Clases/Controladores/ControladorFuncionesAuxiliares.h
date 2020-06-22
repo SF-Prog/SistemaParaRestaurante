@@ -7,13 +7,14 @@
 class ControladorFuncionesAuxiliares : public IControladorFuncionesAuxiliares {
 public:
     bool estaMesaTieneVenta(int);
+    bool existeMesa(int);
     bool existeMozo(string);
     bool existeProducto(string);
-    VentaLocal* obtenerCodigoDeVenta(int);
-    TipoProducto tipoProducto(string);
-    Mesa* obtenerMesa(int);
-    bool existeMesa(int);
     bool MostrarInformacion(string);
+    VentaLocal* obtenerCodigoDeVenta(int);
+    Mesa* obtenerMesa(int);
+    TipoProducto tipoProducto(string);
+    bool ventaFacturada(int);
 };
 
 #endif //CONTROLADORFUNCIONESAUXILIARES

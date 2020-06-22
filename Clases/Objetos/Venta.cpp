@@ -1,4 +1,5 @@
 #include "Venta.h"
+#include "Comun.h"
 
 //Constructores
 Venta::Venta() {}

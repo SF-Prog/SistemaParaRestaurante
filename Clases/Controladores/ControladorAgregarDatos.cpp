@@ -24,9 +24,12 @@ void ControladorAgregarDatos::cargarDatos(){
 	VentaLocal* vL=new VentaLocal("V01");
 	Venta* vL2= new VentaLocal("V02");
 	Venta* vL3= new VentaLocal("V03");
+	VentaLocal* vL4 = new VentaLocal(dynamic_cast<Mozo*>(m));
+	vL4->setCodigoVenta("vL4");
 	mV->agregarVenta(vL);
 	mV->agregarVenta(vL2);
 	mV->agregarVenta(vL3);
+	mV->agregarVenta(vL4);
 
 	//Producto
 	ManejadorProducto* mP=ManejadorProducto::getInstancia();
@@ -59,9 +62,9 @@ void ControladorAgregarDatos::cargarDatos(){
 	mM->agregarMesa(mesa6);
 	mM->agregarMesa(mesa7);
 	mM->agregarMesa(mesa8);
-
+	/*
 	//Facturacion
-/*	DtFactura* dtFact;
+	DtFactura* dtFact;
 	DtFechaHora fecha;
 	DtProductoFactura* dtPF;
 	list<DtProductoFactura*> col_dtPF;
@@ -70,10 +73,12 @@ void ControladorAgregarDatos::cargarDatos(){
 	dtPF = new DtProductoFactura("Pan", 19, 1);
 	col_dtPF.push_back(dtPF);
 	dtFact = new DtFactura("V01", fecha.actual(), col_dtPF, 200, 0, 200, 250);
-*/
+
+	vL4->setFactura(dtFact);
+	*/
 
 	//Asignar mesas a mozos
-	mesa1->setVentaLocal(vL);
+	mesa1->setVentaLocal(vL4);
 	list<int> mesasLibres = m2->mesasAsignadasSinVenta();
-	m2->asignarMesas(mesasLibres, vL);
+	m2->asignarMesas(mesasLibres, vL4);
 }

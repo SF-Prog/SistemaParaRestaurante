@@ -40,6 +40,7 @@ void ControladorIniciarVenta::confirmarIniciarVenta() {
 	ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
 	Mozo* mo = dynamic_cast<Mozo*>(mE->getEmpleado(this->getMozo()));
 	VentaLocal* vl = new VentaLocal(mo);
+	//vl->setFactura(NULL);
 	mo->asignarMesas(this->getMesas(), vl);
 	ManejadorVenta* mV = ManejadorVenta::getInstancia();
 	mV->agregarVenta(vl);

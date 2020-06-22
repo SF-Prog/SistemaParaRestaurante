@@ -208,6 +208,8 @@ void agregarProductoAVenta() {
         cout << endl << "Ingrese su numero: ";
         cin >> mesaSeleccionada;
 
+        iConAgP->seleccionarMesa(mesaSeleccionada);
+
         bool exitAgregar = true;
         while (exitAgregar) {
             int continuar;
@@ -220,7 +222,7 @@ void agregarProductoAVenta() {
                 else {
                     list<DtProductoBase*> productos;
                     int prod, cantSeleccion = 0;
-                    string seleccion;
+                    string producto, confirma;
 
                     cout << "Seleccione el producto que desea agregar " << endl;
                     cout << " \t 1.Producto Comun \n" << "\t 2.Producto Menu\n" << "\t 0.Salir" << endl;
@@ -249,50 +251,46 @@ void agregarProductoAVenta() {
                             cout << "\t" << endl;
                         }
                         cout << endl << "Ingrese el codigo: ";
-                        cin >> seleccion;
+                        cin >> producto;
 
-                        if (iConFuA->existeProducto(seleccion)) {
-                            iConAgP->seleccionarMesa(mesaSeleccionada);
-
+                        if (iConFuA->existeProducto(producto)) {
                             cout << endl << "Ingrese la cantidad: ";
                             cin >> cantSeleccion;
 
                             VentaLocal* v = iConFuA->obtenerCodigoDeVenta(mesaSeleccionada);
-                            DtProductoCantidad dtPC = DtProductoCantidad(seleccion, cantSeleccion);
+                            DtProductoCantidad dtPC = DtProductoCantidad(producto, cantSeleccion);
 
                             iConAgP->seleccionarProducto(dtPC);
 
-                            if (iConAgP->hayEsteProductoEnEnEstaVenta(v, seleccion)) {
-                                iConAgP->incrementarProductoEnVenta(v, dtPC);
-                                cout << "Se incremento la cantidad del Producto en la venta." << endl;
-                            }
-                            else {
-                                cout << endl << "¿Desea confirmar el producto en la venta? (y/n): ";
-                                cin >> seleccion;
-                                if (seleccion == "y" || seleccion == "Y") {
+                            cout << endl << "¿Desea confirmar el producto? (y/n): ";
+                            cin >> confirma;
+                            if (confirma == "y" || confirma == "Y") {
+                                if (iConAgP->hayEsteProductoEnEnEstaVenta(v, producto)) {
+                                    iConAgP->confirmarAgregarProductoVenta();
+                                    cout << "Se incremento la cantidad del Producto en la venta." << endl;
+                                } else {
                                     iConAgP->confirmarAgregarProductoVenta();
                                     cout << "Se agrego un nuevo producto a la venta." << endl;
                                 }
-                                else {
-                                    iConAgP->cancelarAgregarProductoVenta();
-                                    if (seleccion != "n" && seleccion != "N")
-                                        cout << "Opcion invalida. ";
-                                    cout << "No se pudo agregar el producto a la venta." << endl;
-                                }
+                            } else {
+                                iConAgP->cancelarAgregarProductoVenta();
+                                if (confirma != "n" && confirma != "N")
+                                    cout << "Opcion invalida. ";
+                                cout << "No se pudo agregar el producto a la venta." << endl;
                             }
                         }
                         else
                             cout << "No existe el producto indicado." << endl;
 
                         cout << endl << "¿Desea agregar otro producto?? (y/n): ";
-                        cin >> seleccion;
+                        cin >> confirma;
 
-                        if (seleccion == "y" || seleccion == "Y")
+                        if (confirma == "y" || confirma == "Y")
                             prod = 1;
                         else {
                             prod = 0;
                             exitAgregar = false;
-                            if (seleccion != "n" && seleccion != "N")
+                            if (confirma != "n" && confirma != "N")
                                 cout << "Opcion invalida.";
                         }
                     }
@@ -324,10 +322,10 @@ void quitarProductoAVenta() {
     cout << "Ingrese la mesa a la cual quitar productos: " << endl;
     cin >> mesaElegida;
 
-				if(iConFuA->existeMesa(mesaElegida)){
-						Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
-						list<DtProducto*> productosVenta;
-						VentaLocal* vloc = mesa->getVentaLocal();
+	if(iConFuA->existeMesa(mesaElegida)){
+		Mesa* mesa = iConFuA->obtenerMesa(mesaElegida);
+		list<DtProducto*> productosVenta;
+		VentaLocal* vloc = mesa->getVentaLocal();
 
         if(vloc == NULL){
             std::cout << "\t\t\tLa mesa "<< mesa->getNumero() << " NO tiene VentaLocal asignada." << '\n';
@@ -375,59 +373,56 @@ void quitarProductoAVenta() {
 }
 
 void facturacionDeUnaVenta() {
+    system("clear");
 
-  int idMesa;
-  float descuento;
-  DtFacturaLocal dtFL;
-  bool encontro, finalizar;
+    cout << "_____________________________________________________" << endl;
+    cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
+    cout << "_____________________________________________________" << endl;
+
+    int idMesa;
+    float descuento;
+    DtFacturaLocal dtFL;
+    bool encontro, finalizar;
 	string confirma;
 
-
 	try {
-			finalizar = false;
-			do {
-
-				system("clear");
-
-		    cout << "_____________________________________________________" << endl;
-		    cout << "===F A C T U R A C I O N   D E   U N A   V E N T A===" << endl;
-		    cout << "_____________________________________________________" << endl;
-
+		finalizar = false;
+		do {
 		    cout << endl << "Ingrese Nº de mesa: ";
 		    cin >> idMesa;
 
-				if (!iConFuA->existeMesa(idMesa))
-						throw invalid_argument("ERROR! No existe la mesa ingresada");
+		    if (!iConFuA->existeMesa(idMesa))
+			    throw invalid_argument("ERROR! No existe la mesa ingresada");
 
-						if (!iConFuA->estaMesaTieneVenta(idMesa)){
-						        cout << endl << "esta Mesa NOOOO TieneVenta";
-						}else{
-							cout << endl << "esta Mesa SIII TieneVenta";}
+            if (!iConFuA->estaMesaTieneVenta(idMesa))
+                cout << "La mesa seleccionada no posee ventas iniciadas." << endl;
+            else {
+                if (!iConFuA->ventaFacturada(idMesa)) {
+                    cout << "\nDescuento: ";
+                    cin >> descuento;
 
+                    dtFL = iConFac->facturar(idMesa, descuento);
 
-		    cout << "\nDescuento: ";
-		    cin >> descuento;
+                    cout << endl << "Se ha generado la siguiente factura:";
+                    cout << endl << dtFL;
 
-				dtFL = iConFac->facturar(idMesa,descuento);
-
-        cout << endl << "Se ha generado la siguiente factura:";
-        cout << endl << dtFL;
-
-				cout << endl << "¿Desea facturar otra mesa? (y/n): ";
-				cin >> confirma;
-				if (confirma == "y" || confirma == "Y")
-						finalizar = false;
-				else {
-						finalizar = true;
-						if (confirma != "n" && confirma != "N")
-								throw invalid_argument("ERROR! opcion invalida.");
-				}
+                    cout << endl << "¿Desea facturar otra mesa? (y/n): ";
+                    cin >> confirma;
+                    if (confirma == "y" || confirma == "Y")
+                        finalizar = false;
+                    else {
+                        finalizar = true;
+                        if (confirma != "n" && confirma != "N")
+                            throw invalid_argument("ERROR! opcion invalida.");
+                    }
+                } else
+                    cout << "La venta para la mesa seleccionada ya fue facturada." << endl;
+            }
 
 		} while (!finalizar);
 	} catch (exception& e) {
 		cout << endl << e.what() << endl;
 	}
-
 }
 
 void asignarMozosAMesas() {
@@ -578,6 +573,7 @@ void informacionProducto() {
 // 				}
 // }
 }
+
 void cargarDatosPrueba() {
     system("clear");
 

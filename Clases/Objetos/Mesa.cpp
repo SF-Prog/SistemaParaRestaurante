@@ -1,4 +1,5 @@
 #include "Mesa.h"
+#include "../Manejadores/ManejadorProducto.h"
 
 //Constructores
 Mesa::Mesa() {}
@@ -29,13 +30,11 @@ bool Mesa::tieneVenta() {
     return this->getVentaLocal() != NULL;
 }
 void Mesa::agregarProducto(DtProductoCantidad pc) {
-    if (this->getVentaLocal()->tieneElProducto(pc.getCodigo())) {
-        //cout << "Entro1" << endl;
-        this->getVentaLocal()->incrementar(pc);
-    } else {
-        //cout << "Entro2" << endl;
-        this->getVentaLocal()->agregarProducto(pc);
-    }
+    VentaLocal* ventaLocal = this->getVentaLocal();
+    if (ventaLocal->tieneElProducto(pc.getCodigo()))
+        ventaLocal->incrementar(pc);
+    else
+        ventaLocal->agregarProducto(pc);
 }
 list<DtProducto*> Mesa::listarProductos() {
     return this->getVentaLocal()->listarProductos();

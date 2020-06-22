@@ -40,11 +40,6 @@ void ControladorAgregarProducto::confirmarAgregarProductoVenta() {
 	ManejadorMesa* mM = ManejadorMesa::getInstancia();
 	Mesa* me = mM->getMesa(this->getMesa());
 	me->agregarProducto(this->getProductoVenta());
-	//cout << "Codigo VL: " << me->getVentaLocal()->getCodigo() << endl;
-	//cout << "Sizeeeee: " << me->getVentaLocal()->getVentaProductos().size() << endl;
-}
-void ControladorAgregarProducto::incrementarProductoEnVenta(VentaLocal* VL, DtProductoCantidad DtPc) {
-	this->incrementarProductoEnVenta(VL, DtPc);
 }
 bool ControladorAgregarProducto::hayEsteProductoEnEnEstaVenta(VentaLocal* VL, string codigo) {
 	ManejadorVenta* mV= ManejadorVenta::getInstancia();

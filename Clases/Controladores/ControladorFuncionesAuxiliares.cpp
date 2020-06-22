@@ -29,8 +29,8 @@ TipoProducto ControladorFuncionesAuxiliares::tipoProducto(string codigo) {
     return mP->getProducto(codigo)->getTipoProducto();
 }
 Mesa* ControladorFuncionesAuxiliares::obtenerMesa(int codigo) {
-  ManejadorMesa* mM=ManejadorMesa::getInstancia();
-  Mesa *me = mM->getMesa(codigo);
+    ManejadorMesa* mM=ManejadorMesa::getInstancia();
+    Mesa *me = mM->getMesa(codigo);
     return me;
 }
 bool ControladorFuncionesAuxiliares::existeMesa(int codigo) {
@@ -38,12 +38,13 @@ bool ControladorFuncionesAuxiliares::existeMesa(int codigo) {
     return mM->existeMesa(codigo);
 }
 bool ControladorFuncionesAuxiliares::MostrarInformacion(string codigo){
-
 	ManejadorProducto *mP = ManejadorProducto::getInstancia();
 	Producto *p = mP->getProducto(codigo);
-
-	if (p->getTipoProducto()==menu){
-		return true;
-
-}else{return false;}
+	return p->getTipoProducto() == menu;
+}
+bool ControladorFuncionesAuxiliares::ventaFacturada(int mesa) {
+    Mesa* m = this->obtenerMesa(mesa);
+    DtFactura* f = m->getVentaLocal()->getFactura();
+    //cout << f->getCodVenta() << endl;
+    return f == NULL;
 }

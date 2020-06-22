@@ -13,7 +13,6 @@ public:
     virtual list<DtProductoBase*> listarProductos() = 0;
     virtual void cancelarAgregarProductoVenta() = 0;
     virtual void confirmarAgregarProductoVenta() = 0;
-    virtual void incrementarProductoEnVenta(VentaLocal*, DtProductoCantidad) = 0;
     virtual bool hayEsteProductoEnEnEstaVenta(VentaLocal*, string) = 0;
 };
 

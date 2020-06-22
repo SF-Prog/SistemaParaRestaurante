@@ -13,6 +13,7 @@ public:
 	virtual Mesa* obtenerMesa(int) = 0;
     virtual bool existeMesa(int) = 0;
     virtual	bool MostrarInformacion(string) = 0;
+	virtual bool ventaFacturada(int) = 0;
 };
 
 #endif //ICONTROLADORFUNCIONESAUXILIARES
